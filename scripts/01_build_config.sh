@@ -57,14 +57,29 @@ if [ $# -eq 4 ] ; then
    sleep 1
    tput setaf 7
 
-    
+   BLZ_JNL="$DIR_BLZ/data/blazegraph.jnl"
+  
+   if [ -e $BLZ_JNL ] ; then
+      
+      echo
+      echo " $DIR_BLZ/data/blazegraph.jnl will be deteted "
+      read -n1 -t 5 -r -p " Press SPACE to abort..." key
+        
+      if [ "$key" = '' ] ; then
+          # Space pressed
+          exit 2
+      else
+          # Anything else pressed
+          rm -f $BLZ_JNL &> /dev/null
+          echo " blazegraph.jnl deteted "
+      fi
+   fi
+   
    echo "$IP_HOST $NAMESPACE $L_PORT $R_PORT" > $NANO_END_POINT_FILE
      
    releasePort $L_PORT  
    releasePort $R_PORT  
-   
-   rm -f $DIR_BLZ/data/blazegraph.jnl &> /dev/null
-   
+
    java -server -XX:+UseG1GC -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl -Djetty.port=$L_PORT -Dcom.bigdata.rdf.sail.namespace=ola -jar $BLAZEGRAPH_PATH &
    
    sleep 3
