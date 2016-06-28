@@ -1,0 +1,149 @@
+#!/bin/bash
+   
+    RW_MODE=$2
+    
+    releasePort() {
+      PORT=$1          
+      if ! lsof -i:$PORT &> /dev/null
+      then
+        isFree="true"
+      else    
+        r_comm=`fuser -k $PORT/tcp  &> /dev/null`
+        sleep 1
+      fi
+    }  
+       
+    CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"    
+    CURRENT_DIRECTORY="scripts"
+    ROOT_PATH="${CURRENT_PATH/'/'$CURRENT_DIRECTORY/''}"
+
+    BLZ_INFO_INSTALL="$CURRENT_PATH/conf/BLZ_INFO_INSTALL"
+    NANO_END_POINT_FILE="$CURRENT_PATH/conf/nanoEndpoint"
+    READ_ONLY_XML_CONF="$CURRENT_PATH/conf/blazegraph/owerrideXMl/webWithConfReadOnly.xml"
+    
+    if [ "$1" = "start" ] ; then 
+        
+        if [ "$RW_MODE" != "ro" ] && [ "$RW_MODE" != "rw" ] ; then 
+        
+             echo
+             if [ "$RW_MODE" = "" ] ; then
+               echo " Missing RW_MODE Argument ( 'rw' - 'ro' ) "
+             else
+               echo " RW_MODE Argument can only have 'rw' or 'ro' value "
+             fi 
+             echo
+             exit 2            
+        fi 
+        
+        LINE=$(head -1 $NANO_END_POINT_FILE)        
+            
+        IFS=$' \t\n' read -ra INFO_NANO <<< "$LINE" 
+        NANO_END_POINT_HOST=${INFO_NANO[0]}
+        NAME_SPACE=${INFO_NANO[1]}
+        L_PORT=${INFO_NANO[2]}
+        R_PORT=${INFO_NANO[3]}
+          
+        BLAZEGRAPH_PATH=`cat $BLZ_INFO_INSTALL`
+        
+        DIR_BLZ=$(dirname "${BLAZEGRAPH_PATH}")
+         
+        tput setaf 2
+        echo 
+        echo " #####################################     "
+        echo " ######## Starting EndPoint ##########     "
+        echo " -------------------------------------     "
+        echo -e " \e[90m$0                   \e[32m      "
+        tput setaf 7
+        echo
+        echo -e " \e[37m** NanoEndpoint File             "
+        echo -e "   \e[90m $NANO_END_POINT_FILE          "
+        echo
+        
+        # Run On Local Port 
+        
+        if [ "$RW_MODE" = "rw" ] ; then 
+        
+          releasePort $L_PORT
+          releasePort $R_PORT
+          sleep 2
+          
+          tput setaf 2
+          echo -e " ##  NAMESPACE   : $NAME_SPACE        "
+          echo -e " ##  Local PORT  : $L_PORT            "   
+          echo
+          echo -e " #################################### "
+          echo 
+          tput setaf 7
+          sleep 2         
+                 
+          #java -server -Djetty.port=$L_PORT -Xmx3g -jar $BLAZEGRAPH_PATH &
+          java -server -XX:+UseG1GC -Xmx3g -Xloggc:$DIR_BLZ/logs/gc.txt -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=5M -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000  -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl -Djetty.port=$L_PORT -jar $BLAZEGRAPH_PATH &        
+          
+        # Run On Remote Port 
+        
+        elif [ "$RW_MODE" = "ro" ] ; then
+        
+          releasePort $L_PORT
+          releasePort $R_PORT
+          
+          sleep 2
+          
+          tput setaf 2
+          echo -e " ##  NAMESPACE   : $NAME_SPACE        "     
+          echo -e " ##  Remote PORT : $R_PORT            "
+          echo
+          echo -e " #################################### "
+          echo 
+          tput setaf 7
+          sleep 2
+        
+          #java -server -Djetty.overrideWebXml=$READ_ONLY_XML_CONF -Djetty.port=$R_PORT -Xmx3g -jar $BLAZEGRAPH_PATH &         
+          java -server -XX:+UseG1GC -Xmx3g -Xloggc:$DIR_BLZ/logs/gc.txt -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=5M -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000  -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl -Djetty.overrideWebXml=$READ_ONLY_XML_CONF -Djetty.port=$R_PORT -jar $BLAZEGRAPH_PATH &
+                   
+        fi
+       
+        # curl -X DELETE http://$NANO_END_POINT_HOST:$L_PORT/blazegraph/namespace/kb &> /dev/null
+          
+        echo  -e " \e[97m "
+       
+        
+    elif [ "$1" = "stop" ] ; then 
+
+      tput setaf 2
+      echo 
+      echo "######################################## "
+      echo "######## Stopping EndPoint ############# "
+      echo "---------------------------------------- "
+      echo -e " \e[90m$0                     \e[32m  "
+      echo
+        
+      echo -e " \e[37m** NanoEndpoint File           "
+      echo -e "   \e[90m $NANO_END_POINT_FILE        "
+        
+      tput setaf 7
+      
+      LINE=$(head -1 $NANO_END_POINT_FILE)        
+            
+      IFS=$' \t\n' read -ra INFO_NANO <<< "$LINE"     
+      L_PORT=${INFO_NANO[2]}
+      R_PORT=${INFO_NANO[3]}
+     
+      echo
+      echo " Stop EndPoint on port -> $L_PORT "
+      fuser -k $L_PORT/tcp  &> /dev/null
+      
+      echo " Stop EndPoint on port -> $R_PORT "
+      fuser -k $R_PORT/tcp  &> /dev/null
+      echo
+      echo " EndPoint Stopped !! "
+      echo
+        
+    else
+        echo
+        echo " Invalid arguments :  Please pass One or Two arguments "
+        echo " arg_1             :  start - stop                     "
+        echo " RW_MODE           :  ro - rw                          "
+        echo
+   
+    fi
+    
