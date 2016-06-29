@@ -28,6 +28,8 @@ if [ $# -eq 4 ] ; then
    R_PORT=$4
    
    CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+   cd $CURRENT_PATH
+   
    NANO_END_POINT_FILE="$CURRENT_PATH/conf/nanoEndpoint"
  
    BLZ_INFO_INSTALL="$CURRENT_PATH/conf/BLZ_INFO_INSTALL"
