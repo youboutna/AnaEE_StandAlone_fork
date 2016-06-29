@@ -1,17 +1,27 @@
 #!/bin/bash
 
   CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-  DATA_DIR="../data/corese"
-    
+  
+  if [ $# -eq 1 ] ; then
+     DATA_DIR=$1
+  else
+    # Default Folder
+    DATA_DIR="../data/corese"
+  fi 
+  
   cd $CURRENT_PATH
     
-  if [ $# -eq 3 ] ; then
+  if [ $# -eq 3 -o $# -eq 4 ] ; then
       
     IP=$1
     PORT=$2
     NAMESPACE=$3
+    
+    if [ $# -eq 4 ] ; then
+      DATA_DIR=$4
+    fi
    
-  elif [ $# -eq 0 ] ; then
+  elif [ $# -eq 0 -o  $# -eq 1 ] ; then
    
     CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     NANO_END_POINT_FILE="$CURRENT_PATH/conf/nanoEndpoint"
