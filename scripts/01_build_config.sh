@@ -62,16 +62,21 @@ if [ $# -eq 4 ] ; then
    if [ -e $BLZ_JNL ] ; then
       
       echo
-      echo " $DIR_BLZ/data/blazegraph.jnl will be deteted "
-      read -n1 -t 5 -r -p " Press SPACE to abort..." key
-        
+      echo -e "\e[91m $DIR_BLZ/data/blazegraph.jnl will be deteted \e[39m "
+      echo
+      read -n1 -t 10 -r -p " Press Any Key to abort... 10s " key
+      echo  
       if [ "$key" = '' ] ; then
-          # Space pressed
-          exit 2
-      else
-          # Anything else pressed
+          # Nothing pressed
           rm -f $BLZ_JNL &> /dev/null
           echo " blazegraph.jnl deteted "
+          echo
+      else
+          # Anything pressed
+          echo
+          echo " Script aborted "
+          echo
+          exit 2
       fi
    fi
    
