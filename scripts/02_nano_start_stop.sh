@@ -51,14 +51,14 @@
          
         tput setaf 2
         echo 
-        echo " #####################################     "
-        echo " ######## Starting EndPoint ##########     "
-        echo " -------------------------------------     "
-        echo -e " \e[90m$0                   \e[32m      "
+        echo " ########################################  "
+        echo " ######## Starting EndPoint #############  "
+        echo " ----------------------------------------  "
+        echo -e " \e[90m$0                        \e[39m "
         tput setaf 7
         echo
-        echo -e " \e[37m** NanoEndpoint File             "
-        echo -e "   \e[90m $NANO_END_POINT_FILE          "
+        echo -e " \e[37m** NanoEndpoint File      \e[39m "
+        echo -e "   \e[90m $NANO_END_POINT_FILE   \e[39m "
         echo
         
         # Run On Local Port 
@@ -80,7 +80,16 @@
           sleep 2         
                  
           #java -server -Djetty.port=$L_PORT -Xmx3g -jar $BLAZEGRAPH_PATH &
-          java -server -XX:+UseG1GC -Xmx3g -Xloggc:$DIR_BLZ/logs/gc.txt -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=5M -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000  -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl -Djetty.port=$L_PORT -jar $BLAZEGRAPH_PATH &        
+          java -server -XX:+UseG1GC -Xmx3g \
+               -Xloggc:$DIR_BLZ/logs/gc.txt \
+               -verbose:gc -XX:+PrintGCDetails \
+               -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps \
+               -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 \
+               -XX:GCLogFileSize=5M \
+               -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000 \
+               -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl \
+               -Djetty.port=$L_PORT -jar $BLAZEGRAPH_PATH &
+          sleep 2
           
         # Run On Remote Port 
         
@@ -102,8 +111,16 @@
           sleep 2
         
           #java -server -Djetty.overrideWebXml=$READ_ONLY_XML_CONF -Djetty.port=$R_PORT -Xmx3g -jar $BLAZEGRAPH_PATH &         
-          java -server -XX:+UseG1GC -Xmx3g -Xloggc:$DIR_BLZ/logs/gc.txt -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=5M -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000  -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl -Djetty.overrideWebXml=$READ_ONLY_XML_CONF -Djetty.port=$R_PORT -jar $BLAZEGRAPH_PATH &
-                   
+          java -server -XX:+UseG1GC -Xmx3g \
+               -Xloggc:$DIR_BLZ/logs/gc.txt \
+               -verbose:gc -XX:+PrintGCDetails \
+               -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps \
+               -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 \
+               -XX:GCLogFileSize=5M \
+               -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000 \
+               -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl \
+               -Djetty.overrideWebXml=$READ_ONLY_XML_CONF -Djetty.port=$R_PORT -jar $BLAZEGRAPH_PATH &
+          sleep 2        
         fi
        
         # curl -X DELETE http://$NANO_END_POINT_HOST:$L_PORT/blazegraph/namespace/kb &> /dev/null
