@@ -27,9 +27,9 @@
         
              echo
              if [ "$RW_MODE" = "" ] ; then
-               echo " Missing RW_MODE Argument ( 'rw' - 'ro' ) "
+               echo -e "\e[91m Missing RW_MODE Argument ( 'rw' - 'ro' ) \e[39m "
              else
-               echo " RW_MODE Argument can only have 'rw' or 'ro' value "
+               echo -e "\e[91m RW_MODE Argument can only have 'rw' or 'ro' value \e[39m "
              fi 
              echo
              exit 2            
@@ -69,7 +69,8 @@
           
           tput setaf 2
           echo -e " ##  NAMESPACE   : $NAME_SPACE        "
-          echo -e " ##  Local PORT  : $L_PORT            "   
+          echo -e " ##  Local PORT  : $L_PORT            "
+          echo -e " ##  MODE        : $RW_MODE           "
           echo
           echo -e " #################################### "
           echo 
@@ -91,6 +92,7 @@
           tput setaf 2
           echo -e " ##  NAMESPACE   : $NAME_SPACE        "     
           echo -e " ##  Remote PORT : $R_PORT            "
+          echo -e " ##  MODE        : $RW_MODE           "
           echo
           echo -e " #################################### "
           echo 
