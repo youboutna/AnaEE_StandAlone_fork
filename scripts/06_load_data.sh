@@ -22,7 +22,6 @@
    
   elif [ $# -eq 0 -o  $# -eq 1 ] ; then
    
-    CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     NANO_END_POINT_FILE="$CURRENT_PATH/conf/nanoEndpoint"
     
     LINE=$(head -1 $NANO_END_POINT_FILE)        
