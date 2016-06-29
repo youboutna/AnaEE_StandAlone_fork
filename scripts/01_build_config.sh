@@ -100,13 +100,16 @@ if [ $# -eq 4 ] ; then
    sleep 1
    
    sed -i "s/$NAMESPACE/$DEFAULT_NAMESPACE/g" conf/blazegraph/namespace/dataloader.xml
-   
-   fuser -k $L_PORT/tcp &> /dev/null
-   
+   echo ; echo
+   echo -e "\e[92m Namespace created \e[39m "
+   sleep 0.5 ; echo
+   echo -e "\e[93m Stopping Blazegraph \e[39m "
+   KILL_PROCESS=$(fuser -k $L_PORT/tcp &>/dev/null )
+   sleep 0.5
+   echo -e "\e[93m Blazegraph Stopped \e[39m "
    echo
-   echo 
-   echo " namespace created !! "
-   echo 
+   echo -e "\e[92m Use 02_nano_start_stop.sh script to start-stop Blazegraph \e[39m "
+   echo
 
 else
     echo
