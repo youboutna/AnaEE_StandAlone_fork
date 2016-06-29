@@ -66,7 +66,7 @@ if [ $# -eq 4 ] ; then
       echo
       echo -e "\e[91m $DIR_BLZ/data/blazegraph.jnl will be deteted \e[39m "
       echo
-      read -n1 -t 10 -r -p " Press Any Key to abort... 10s " key
+      read -n1 -t 10 -r -p " Press Enter to continue, Any other Key to abort.. else delete in 10 s " key
       echo  
       if [ "$key" = '' ] ; then
           # Nothing pressed
