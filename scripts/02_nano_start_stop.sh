@@ -13,7 +13,9 @@
       fi
     }  
        
-    CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"    
+    CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    cd $CURRENT_PATH
+    
     CURRENT_DIRECTORY="scripts"
     ROOT_PATH="${CURRENT_PATH/'/'$CURRENT_DIRECTORY/''}"
 
@@ -119,8 +121,8 @@
       echo -e " \e[90m$0                     \e[32m  "
       echo
         
-      echo -e " \e[37m** NanoEndpoint File           "
-      echo -e "   \e[90m $NANO_END_POINT_FILE        "
+      echo -e " \e[37m** NanoEndpoint File    \e[39m "
+      echo -e " \e[90m $NANO_END_POINT_FILE   \e[39m "
         
       tput setaf 7
       
