@@ -28,7 +28,7 @@
        exit 3
   fi
 	
-	PREFIX_ENDPOINT="http://$IP:$PORT/blazegraph"
+  PREFIX_ENDPOINT="http://$IP:$PORT/blazegraph"
   SUFFIX_ENDPOINT=/namespace/$NAMESPACE/sparql
   
   ENDPOINT=$PREFIX_ENDPOINT$SUFFIX_ENDPOINT
