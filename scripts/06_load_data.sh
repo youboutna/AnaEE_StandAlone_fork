@@ -1,6 +1,7 @@
 #!/bin/bash
 
   CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  cd $CURRENT_PATH
   
   if [ $# -eq 1 ] ; then
      DATA_DIR=$1
@@ -8,8 +9,6 @@
     # Default Folder
     DATA_DIR="../data/corese"
   fi 
-  
-  cd $CURRENT_PATH
     
   if [ $# -eq 3 -o $# -eq 4 ] ; then
       
