@@ -174,10 +174,10 @@
 			     oboe-core:ofEntity ?undefinedVariable ; 
 			     oboe-core:hasMeasurement ?measu_unitAndValue_02 ; 
 			     :hasVariableContext ?obs_variable_03 ;
-	         oboe-core:hasContext+ ?obs_timeInstant_55 , ?obs_expPlot_57 .             
+	                     oboe-core:hasContext+ ?obs_timeInstant_55 , ?obs_expPlot_57 .             
 	                              
 	        ?measu_unitAndValue_02 a oboe-core:Measurement ; 
-			                             oboe-core:usesStandard ?unit .
+			                 oboe-core:usesStandard ?unit .
 	       
 	        ?unit rdfs:label ?anaeeUnitName .
 	         
@@ -194,41 +194,41 @@
 			        oboe-core:hasMeasurement ?measu_categName_07 .  
 	              
 	        ?measu_categName_07 a oboe-core:Measurement ; 
-			                          oboe-core:usesStandard :Anaee-franceVariableCategoryNamingStandard ; 
-			                          oboe-core:hasValue ?category .
+			              oboe-core:usesStandard :Anaee-franceVariableCategoryNamingStandard ; 
+			              oboe-core:hasValue ?category .
 	                  
 	        ?category rdfs:label ?categoryName .
 	        
 	        ?measu_variableLocalName_04 a oboe-core:Measurement ; 
      	   	                              oboe-core:usesStandard :NamingStandard ; 
-		            	                      oboe-core:hasValue ?localVariableName .
+		            	              oboe-core:hasValue ?localVariableName .
 	
 	        ?variable rdfs:label ?anaeeVariableName .
 	            
 	        ?measu_variableStandardName_05 a oboe-core:Measurement ; 
-	   	                                     oboe-core:usesStandard :Anaee-franceVariableNamingStandard ; 
-			                                     oboe-core:hasValue ?variable .
+	   	                                 oboe-core:usesStandard :Anaee-franceVariableNamingStandard ; 
+			                         oboe-core:hasValue ?variable .
 	                  
 	        ?obs_timeInstant_55 a oboe-core:Observation ; 
-			                          oboe-core:ofEntity 
-			                          oboe-temporal:TimeInstant ; 
-			                          oboe-core:hasMeasurement ?measu_date_56 .
+			              oboe-core:ofEntity 
+			              oboe-temporal:TimeInstant ; 
+			              oboe-core:hasMeasurement ?measu_date_56 .
 		      
 	        ?measu_date_56 a oboe-core:Measurement ;
-		 	                     oboe-core:hasValue ?date .
+		 	         oboe-core:hasValue ?date .
 	                   
 	        ?obs_expPlot_57 a oboe-core:Observation ; 
-			                      oboe-core:ofEntity :ExperimentalPlot ; 
-			                      oboe-core:hasContext ?obs_site_62   .
+			          oboe-core:ofEntity :ExperimentalPlot ; 
+			          oboe-core:hasContext ?obs_site_62   .
 			               
 	        ?obs_site_62 a oboe-core:Observation ; 
-	   	                   oboe-core:ofEntity :ExperimentalSite ;
-			                   oboe-core:hasContext ?obs_type_site_67 ;
-			                   oboe-core:hasContext ?obs_expNetWork_65 ;
-			                   oboe-core:hasMeasurement ?meas_siteNameStandard_64, ?meas_siteName_63 .
+	   	               oboe-core:ofEntity :ExperimentalSite ;
+			       oboe-core:hasContext ?obs_type_site_67 ;
+			       oboe-core:hasContext ?obs_expNetWork_65 ;
+			       oboe-core:hasMeasurement ?meas_siteNameStandard_64, ?meas_siteName_63 .
 			 
 	        ?obs_type_site_67 a oboe-core:Observation ; 
-			                        oboe-core:ofEntity ?siteType .
+			            oboe-core:ofEntity ?siteType .
 	        
 	        ?siteType rdfs:label ?siteTypeName ;
 	        
@@ -237,22 +237,22 @@
 	        FILTER ( NOT EXISTS { ?obs_type_site_67 oboe-core:ofEntity :ExperimentalNetwork . }) . 
 	         
 	        ?obs_expNetWork_65 a oboe-core:Observation ; 
-			                         oboe-core:ofEntity :ExperimentalNetwork ;
-			                         oboe-core:hasMeasurement ?measu_expNetWorkName_66.
+			             oboe-core:ofEntity :ExperimentalNetwork ;
+			             oboe-core:hasMeasurement ?measu_expNetWorkName_66.
 		
 		      ?measu_expNetWorkName_66 a oboe-core:Measurement ; 
-			                               oboe-core:usesStandard :Anaee-franceExperimentalNetworkNamingStandard ; 
-			                               oboe-core:hasValue ?infra .
+			                         oboe-core:usesStandard :Anaee-franceExperimentalNetworkNamingStandard ; 
+			                         oboe-core:hasValue ?infra .
 			            
 		      ?infra rdfs:label ?infraName .
 		
 	        ?meas_siteNameStandard_64 a oboe-core:Measurement ; 
-			                                oboe-core:usesStandard :Anaee-franceExperimentalSiteNamingStandard ; 
-			                                oboe-core:hasValue ?anaeeSiteNameStandard .
+			                    oboe-core:usesStandard :Anaee-franceExperimentalSiteNamingStandard ; 
+			                    oboe-core:hasValue ?anaeeSiteNameStandard .
 		    
 	        ?meas_siteName_63 a oboe-core:Measurement ; 
-			                        oboe-core:usesStandard :NamingStandard ; 
-			                        oboe-core:hasValue ?localSiteName .
+			            oboe-core:usesStandard :NamingStandard ; 
+			            oboe-core:hasValue ?localSiteName .
 		               
 	        BIND(YEAR(?date) AS ?year).         
 	                  
