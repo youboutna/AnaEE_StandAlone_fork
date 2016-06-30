@@ -28,10 +28,10 @@
        exit 3
   fi
 	
-  PREFIX_ENDPOINT="http://$IP:$PORT/blazegraph"
-  SUFFIX_ENDPOINT=/namespace/$NAMESPACE/sparql
+  PREFIX_ENDPOINT="http://$IP:$PORT"
+  SUFFIX_ENDPOINT="blazegraph/namespace/$NAMESPACE/sparql"
   
-  ENDPOINT=$PREFIX_ENDPOINT$SUFFIX_ENDPOINT
+  ENDPOINT=$PREFIX_ENDPOINT/$SUFFIX_ENDPOINT
   
   # Test connexion to namespace 
   check="cat < /dev/null > /dev/tcp/http://$IP/$PORT"
@@ -105,7 +105,7 @@
   echo -e " -------------------------------------------------------- "
   echo -e " \e[90m$0       \e[32m                                    "
   echo
-  echo -e " # ENDPOINT  : $ENDPOINT                                  "
+  echo -e " # ENDPOINT  : $PREFIX_ENDPOINT                           "
   echo -e " # NAMESAPCE : $NAMESPACE                                 "
   echo -e " # OUT       : $OUT                                       "
   echo
