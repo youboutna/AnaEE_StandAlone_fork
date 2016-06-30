@@ -129,7 +129,8 @@
   echo -e " ---------------------------------------------------------------- "
   echo -e " \e[90m$0                                                  \e[32m "
   echo
-  echo -e " # ENDPOINT : $PREFIX_ENDPOINT                                    "
+  echo -e " # ENDPOINT  : $PREFIX_ENDPOINT                                   "
+  echo -e " # NAMESPACE : $NAMESPACE                                         "
   echo -e "\e[90m   Folder     $DATA_DIR                              \e[32m "
   echo
   echo -e " ################################################################ "
