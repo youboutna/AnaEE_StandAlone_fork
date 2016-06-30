@@ -129,19 +129,19 @@
 		    
 	     ?idVariableSynthesis  :ofVariable            ?variable             .
 	     ?variable             :hasCategory           ?category             .
-       ?variable             :hasAnaeeVariableName  ?anaeeVariableName    .
-       ?variable             :hasLocalVariableName  ?localVariableName    .
+             ?variable        	   :hasAnaeeVariableName  ?anaeeVariableName    .
+             ?variable             :hasLocalVariableName  ?localVariableName    .
 	     ?variable             :hasUnit               ?unit                 .
 	     
 	     ?unit                 :hasAnaeeUnitName      ?anaeeUnitName        .
  	 
  	     ?category             :hasCategoryName       ?categoryName         .
  	     ?idVariableSynthesis  :hasSite               ?site                 .
- 	     ?site		             :hasLocalSiteName      ?localSiteName        . 
-       ?site	           	   :hasAnaeeSiteName      ?anaeeSiteName        .           
- 	     ?site		             :hasSiteType           ?siteType             .
- 	     ?site		             :hasSiteTypeName       ?siteTypeName         .
- 	     ?site		             :hasInfra              ?infra                .
+ 	     ?site		   :hasLocalSiteName      ?localSiteName        . 
+             ?site	       	   :hasAnaeeSiteName      ?anaeeSiteName        .           
+ 	     ?site		   :hasSiteType           ?siteType             .
+ 	     ?site		   :hasSiteTypeName       ?siteTypeName         .
+ 	     ?site		   :hasInfra              ?infra                .
  	     ?infra                :hasInfraName          ?infraName            .
  	     
  	     ?idVariableSynthesis  :hasNbData             ?nbData               .
