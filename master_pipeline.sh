@@ -4,14 +4,15 @@
 # $2 NAME_SPACE  
 # $3 LOCAL_PORT 
 # $4 REMOTE_PORT
+# $5 DATAB_BASE { [postgresql] - mysql } 
 
-if [ $# -eq 4 ] ; then
+if [ $# -eq 4 -o $# -eq 5 ] ; then
 
    chmod -R +x scripts/*
    
   ./scripts/utils/check_commands.sh
    
-  ./scripts/00_install_libs.sh 
+  ./scripts/00_install_libs.sh $5
   
   ./scripts/01_build_config.sh  $1 $2 $3 $4
 
