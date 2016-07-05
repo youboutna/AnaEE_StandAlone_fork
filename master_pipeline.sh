@@ -30,10 +30,11 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   
 else
     echo
-    echo " Invalid arguments :  please pass exactly Four arguments  "
+    echo " Invalid arguments :  please pass Four or Five arguments  "
     echo " arg_1             :  IP_HOST ( or Hostname )             "
     echo " arg_2             :  NAME_SPACE                          "
     echo " arg_3             :  LOCAL_PORT                          "
     echo " arg_4             :  REMOTE_PORT                         "        
+    echo " arg_5             :  DATA_BASE { [postgresql] - mysql }  "
     echo
 fi
