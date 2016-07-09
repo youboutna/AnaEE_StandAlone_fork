@@ -17,7 +17,7 @@
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
   }
-  echo " java         installed.. "
+  echo " java       installed.. "
   sleep 0.4
    
   command -v curl >/dev/null 2>&1 || { 
