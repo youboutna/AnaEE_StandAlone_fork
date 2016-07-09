@@ -17,7 +17,7 @@
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
   }
-  echo " java installed.. "
+  echo " java         installed.. "
   sleep 0.4
    
   command -v curl >/dev/null 2>&1 || { 
@@ -27,7 +27,7 @@
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
   }
-  echo " curl installed.. "
+  echo " curl       installed.. "
   sleep 0.4
   
   command -v psql >/dev/null 2>&1 || { 
@@ -37,7 +37,7 @@
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
   }
-  echo " postgres installed.. "
+  echo " postgres   installed.. "
   sleep 0.4
   
   command -v mvn >/dev/null 2>&1 || { 
@@ -47,19 +47,9 @@
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
   }
-  echo " maven installed.. "
+  echo " maven      installed.. "
   sleep 0.4
-  
-  command -v docker >/dev/null 2>&1 || { 
-     echo
-     echo >&2 " Require DOCKER but it's not installed.  Aborting. " ; 
-     echo
-     kill -9 `ps --pid $$ -oppid=` ; 
-     exit
-  }
-  echo " docker installed.. "
-  sleep 0.4
-  
+ 
   echo
   
   
