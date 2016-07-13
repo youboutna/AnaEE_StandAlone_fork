@@ -28,7 +28,7 @@
      exit 3
   fi
 
-  echo -e "\e[90m Strating Generation... \e[39m "
+  echo -e "\e[90m Starting Generation... \e[39m "
   
   java -cp ../libs/yedGen.jar Main -d $INPUT -out $OUTPUT -ext $EXTENSION
 
