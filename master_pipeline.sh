@@ -16,17 +16,17 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   
   ./scripts/01_build_config.sh  $1 $2 $3 $4
 
-  ./scripts/02_nano_start_stop.sh start rw
+  ./scripts/03_nano_start_stop.sh start rw
   
-  ./scripts/03_gen_mapping.sh
+  ./scripts/04_gen_mapping.sh
   
-  ./scripts/04_ontop_gen_triples.sh
+  ./scripts/05_ontop_gen_triples.sh
   
-  ./scripts/05_corese_infer.sh
+  ./scripts/06_corese_infer.sh
   
-  ./scripts/06_load_data.sh
+  ./scripts/07_load_data.sh
   
-  ./scripts/07_portail_query.sh ola_portal_synthesis.ttl
+  ./scripts/08_portail_query.sh ola_portal_synthesis.ttl
   
 else
     echo
