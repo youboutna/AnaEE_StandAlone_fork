@@ -8,7 +8,7 @@
 
 if [ $# -eq 4 -o $# -eq 5 ] ; then
 
-  chmod -R +x scripts/*
+   chmod -R +x scripts/*
    
   ./scripts/03_nano_start_stop.sh stop
     
