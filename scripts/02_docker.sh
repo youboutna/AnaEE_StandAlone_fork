@@ -26,6 +26,7 @@
     SUBNET_CHECK=`docker network ls | grep $SUBNET`
     
     if [[ "${SUBNET_CHECK}" == *$SUBNET* ]]; then
+           echo
            echo " subnet - $SUBNET - already exists "
     else
            echo " create subnet $SUBNET "
