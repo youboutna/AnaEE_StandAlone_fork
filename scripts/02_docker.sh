@@ -25,12 +25,13 @@
       
     if docker history -q $IMAGE_NAME >/dev/null 2>&1 ; then
 	
-	       removeContainerBasedOnImage $DOCKER_BLZ_IMAGE
+        removeContainerBasedOnImage $DOCKER_BLZ_IMAGE
                     
         echo " Remove Image  $IMAGE_NAME ... "
         docker rmi -f $IMAGE_NAME
         echo " Images removed !! "
         echo
+        
     else 
         fuser -k $DEFAULT_PORT/tcp
         docker build -t $IMAGE_NAME .
