@@ -6,7 +6,7 @@
  DEFAULT_PORT="80"
  LOCAL_IP="127.0.0.1"
  IMAGE_NAME="nginx-ecoinformatics"
- HOST="ecoinformaticss.org"
+ HOST="ecoinformatics.org"
  FOLDER_DOCKER_FILE="docker"
 
  CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
