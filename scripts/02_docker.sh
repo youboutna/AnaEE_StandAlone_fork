@@ -52,8 +52,11 @@
     
     fuser -k $DEFAULT_PORT/tcp
     LINE="$LOCAL_IP $HOST"
-    sudo -- sh -c "echo '$LINE' >> /etc/hosts" 
-        
+    
+    if ! grep -Fxq "$LINE" /etc/hosts ; then
+       sudo -- sh -c "echo '$LINE' >> /etc/hosts"
+    fi
+    
     docker run -d --net $SUBNET --name $HOST --ip $DEFAULT_IP -p $DEFAULT_PORT:$DEFAULT_PORT $IMAGE_NAME
     
  fi
