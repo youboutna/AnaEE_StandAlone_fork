@@ -6,7 +6,6 @@
  DEFAULT_PORT="80"
  IMAGE_NAME="nginx-ecoinformatics"
  HOST="ecoinformaticss.org"
- REDIRECTION="localhost"
  FOLDER_DOCKER_FILE="docker"
 
  CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -44,7 +43,7 @@
     fi
     
     fuser -k $DEFAULT_PORT/tcp
-    LINE="$DEFAULT_IP $REDIRECTION"
+    LINE="$DEFAULT_IP $HOST"
     sudo -- sh -c "echo '$LINE' >> /etc/hosts" 
     
     docker build -t $IMAGE_NAME .
