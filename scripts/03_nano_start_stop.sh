@@ -130,34 +130,37 @@
         
     elif [ "$1" = "stop" ] ; then 
 
-      tput setaf 2
-      echo 
-      echo "######################################## "
-      echo "######## Stopping EndPoint ############# "
-      echo "---------------------------------------- "
-      echo -e " \e[90m$0                     \e[32m  "
-      echo
-        
-      echo -e " \e[37m** NanoEndpoint File    \e[39m "
-      echo -e " \e[90m $NANO_END_POINT_FILE   \e[39m "
-        
-      tput setaf 7
+      if [ -f $NANO_END_POINT_FILE ] ; then
       
-      LINE=$(head -1 $NANO_END_POINT_FILE)        
-            
-      IFS=$' \t\n' read -ra INFO_NANO <<< "$LINE"     
-      L_PORT=${INFO_NANO[2]}
-      R_PORT=${INFO_NANO[3]}
-     
-      echo
-      echo " Stop EndPoint on port -> $L_PORT "
-      fuser -k $L_PORT/tcp  &> /dev/null
-      
-      echo " Stop EndPoint on port -> $R_PORT "
-      fuser -k $R_PORT/tcp  &> /dev/null
-      echo
-      echo " EndPoint Stopped !! "
-      echo
+         tput setaf 2
+         echo 
+         echo "######################################## "
+         echo "######## Stopping EndPoint ############# "
+         echo "---------------------------------------- "
+         echo -e " \e[90m$0                     \e[32m  "
+         echo
+           
+         echo -e " \e[37m** NanoEndpoint File    \e[39m "
+         echo -e " \e[90m $NANO_END_POINT_FILE   \e[39m "
+           
+         tput setaf 7
+         
+         LINE=$(head -1 $NANO_END_POINT_FILE)        
+               
+         IFS=$' \t\n' read -ra INFO_NANO <<< "$LINE"     
+         L_PORT=${INFO_NANO[2]}
+         R_PORT=${INFO_NANO[3]}
+        
+         echo
+         echo " Stop EndPoint on port -> $L_PORT "
+         fuser -k $L_PORT/tcp  &> /dev/null
+         
+         echo " Stop EndPoint on port -> $R_PORT "
+         fuser -k $R_PORT/tcp  &> /dev/null
+         echo
+         echo " EndPoint Stopped !! "
+         echo
+      fi
         
     else
         echo
