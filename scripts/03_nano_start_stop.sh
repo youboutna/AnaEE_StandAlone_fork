@@ -8,7 +8,7 @@
       then
         isFree="true"
       else    
-        r_comm=`sudo fuser -k $PORT/tcp  &> /dev/null`
+        r_comm=`fuser -k $PORT/tcp  &> /dev/null`
         sleep 1
       fi
     }  
@@ -153,10 +153,10 @@
         
          echo
          echo " Stop EndPoint on port -> $L_PORT "
-         sudo fuser -k $L_PORT/tcp  &> /dev/null
+         fuser -k $L_PORT/tcp  &> /dev/null
          
          echo " Stop EndPoint on port -> $R_PORT "
-         sudo fuser -k $R_PORT/tcp  &> /dev/null
+         fuser -k $R_PORT/tcp  &> /dev/null
          echo
          echo " EndPoint Stopped !! "
          echo
