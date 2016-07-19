@@ -10,6 +10,9 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
 
    chmod -R +x scripts/*
    
+   # Stop endPoint if already existing instance 
+   ./scripts/03_nano_start_stop.sh stop
+    
   ./scripts/utils/check_commands.sh
    
   ./scripts/00_install_libs.sh $5
