@@ -48,7 +48,7 @@
     sudo -- sh -c "echo '$LINE' >> /etc/hosts" 
     
     docker build -t $IMAGE_NAME .
-    docker run -d --net $SUBNET --name $HOST --ip $DEFAULT_IP -d -p $DEFAULT_PORT:$DEFAULT_PORT $IMAGE_NAME
+    docker run -d --net $SUBNET --name $HOST --ip $DEFAULT_IP -p $DEFAULT_PORT:$DEFAULT_PORT $IMAGE_NAME
     
     
  fi
