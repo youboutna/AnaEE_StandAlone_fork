@@ -26,8 +26,9 @@
   sleep 1
   tput setaf 7
 
-  cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
- 
+  CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  cd $CURRENT_PATH
+  
   if [ ! -f $OWL ]  || [ ! -f $TTL ]  ; then
      echo -e "\e[91m Missing OWL or TTL Files ! \e[39m "
      exit 3
@@ -43,6 +44,7 @@
   -out "$OUTPUT"                                                   \
   -f   "$f"                                                        \
   -F   "$F"                                                        \
+  -log "../libs/logs/corese/logs.log"
   -e
   
   echo 
