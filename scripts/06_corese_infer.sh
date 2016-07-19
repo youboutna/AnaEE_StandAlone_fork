@@ -44,7 +44,7 @@
   -out "$OUTPUT"                                                   \
   -f   "$f"                                                        \
   -F   "$F"                                                        \
-  -log "../libs/logs/corese/logs.log"
+  -log "../libs/logs/corese/logs.log"                              \
   -e
   
   echo 
