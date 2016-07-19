@@ -8,10 +8,9 @@
 
 if [ $# -eq 4 -o $# -eq 5 ] ; then
 
-   chmod -R +x scripts/*
+  chmod -R +x scripts/*
    
-   # Stop endPoint if already existing instance 
-   ./scripts/03_nano_start_stop.sh stop
+  ./scripts/03_nano_start_stop.sh stop
     
   ./scripts/utils/check_commands.sh
    
@@ -36,6 +35,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   ./scripts/08_portail_query.sh ola_portal_synthesis.ttl
   
 else
+
     echo
     echo " Invalid arguments :  please pass Four or Five arguments  "
     echo " arg_1             :  IP_HOST ( or Hostname )             "
