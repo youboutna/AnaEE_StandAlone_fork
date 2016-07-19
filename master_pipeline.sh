@@ -16,6 +16,8 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   
   ./scripts/01_build_config.sh  $1 $2 $3 $4
 
+   # ./scripts/02_docker.sh start
+   
   ./scripts/03_nano_start_stop.sh start rw
   
   ./scripts/04_gen_mapping.sh
@@ -25,6 +27,8 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   ./scripts/06_corese_infer.sh
   
   ./scripts/07_load_data.sh
+  
+   # ./scripts/02_docker.sh stop
   
   ./scripts/08_portail_query.sh ola_portal_synthesis.ttl
   
