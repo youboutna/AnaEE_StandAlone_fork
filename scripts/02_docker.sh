@@ -20,9 +20,6 @@
     
  if [ "$1" = "start" ] ; then 
 
-    LINE="$IP $HOST"
-    sudo -- sh -c "echo '$LINE' >> /etc/hosts" 
-      
     if docker history -q $IMAGE_NAME >/dev/null 2>&1 ; then
 	
         removeContainerBasedOnImage $DOCKER_BLZ_IMAGE
@@ -33,7 +30,11 @@
         echo
         
     else 
+    
         fuser -k $DEFAULT_PORT/tcp
+        LINE="$IP $HOST"
+        sudo -- sh -c "echo '$LINE' >> /etc/hosts" 
+      
         docker build -t $IMAGE_NAME .
         docker run -d --net mynet123 --name $HOST --ip $DEFAULT_IP -d -p $DEFAULT_PORT:$DEFAULT_PORT $IMAGE_NAME
     fi
