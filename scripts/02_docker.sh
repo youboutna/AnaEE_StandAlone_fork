@@ -51,7 +51,7 @@
     
     fi 
     
-    fuser -k $DEFAULT_PORT/tcp
+    sudo fuser -k $DEFAULT_PORT/tcp
     LINE="$LOCAL_IP $HOST"
     
     if ! grep -Fxq "$LINE" /etc/hosts ; then
