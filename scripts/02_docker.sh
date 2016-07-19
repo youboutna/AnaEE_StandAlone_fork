@@ -1,6 +1,8 @@
 #/bin/bash
 
  DEFAULT_IP="192.168.56.110"
+ SUBNET="mynet123"
+ PLAGE_SUBNET="192.168.56.250/24"
  DEFAULT_PORT="80"
  IMAGE_NAME="nginx-ecoinformatics"
  HOST="ecoinformaticss.org"
@@ -19,15 +21,25 @@
  } 
     
  if [ "$1" = "start" ] ; then 
-
+ 
+    SUBNET_CHECK=`docker network ls | grep $SUBNET`
+    
+    if [[ "${SUBNET_CHECK}" == *$SUBNET* ]]; then
+           echo " subnet - $SUBNET - already exists "
+    else
+           echo " create subnet $SUBNET "
+           docker network create --subnet=$PLAGE_SUBNET $SUBNET 
+           # docker network rm $SUBNET
+    fi
+    
     if docker history -q $IMAGE_NAME >/dev/null 2>&1 ; then
 	
         removeContainerBasedOnImage $DOCKER_BLZ_IMAGE
                     
-        echo " Remove Image  $IMAGE_NAME ... "
-        docker rmi -f $IMAGE_NAME
-        echo " Images removed !! "
-        echo
+        #echo " Remove Image  $IMAGE_NAME ... "
+        #docker rmi -f $IMAGE_NAME
+        #echo " Images removed !! "
+        #echo
         
     else 
     
