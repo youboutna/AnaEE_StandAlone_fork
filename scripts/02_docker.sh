@@ -4,6 +4,7 @@
  SUBNET="mynet123"
  PLAGE_SUBNET="192.168.56.250/24"
  DEFAULT_PORT="80"
+ LOCAL_IP="127.0.0.1"
  IMAGE_NAME="nginx-ecoinformatics"
  HOST="ecoinformaticss.org"
  FOLDER_DOCKER_FILE="docker"
@@ -33,22 +34,27 @@
     fi
     
     if docker history -q $IMAGE_NAME >/dev/null 2>&1 ; then
-	
+
+        sudo service apache2 stop
+        
         removeContainerBasedOnImage $IMAGE_NAME
                     
         #echo " Remove Image  $IMAGE_NAME ... "
         #docker rmi -f $IMAGE_NAME
         #echo " Images removed !! "
         #echo
-    fi
+        
+    else 
+    
+        docker build -t $IMAGE_NAME .
+    
+    fi 
     
     fuser -k $DEFAULT_PORT/tcp
-    LINE="$DEFAULT_IP $HOST"
+    LINE="$LOCAL_IP $HOST"
     sudo -- sh -c "echo '$LINE' >> /etc/hosts" 
-    
-    docker build -t $IMAGE_NAME .
+        
     docker run -d --net $SUBNET --name $HOST --ip $DEFAULT_IP -p $DEFAULT_PORT:$DEFAULT_PORT $IMAGE_NAME
-    
     
  fi
  
