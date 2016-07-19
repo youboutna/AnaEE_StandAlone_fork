@@ -32,7 +32,7 @@
        echo
     } 
     
-    removeAllContainerBasedOnImage $IMAGE_NAME
+    removeContainerBasedOnImage $IMAGE_NAME
     
     sudo sed --in-place '/$LINE/d' /etc/hosts
    
