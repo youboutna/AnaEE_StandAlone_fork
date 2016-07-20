@@ -31,7 +31,7 @@
         
         ./scripts/03_nano_start_stop.sh stop
             
-        ./scripts/utils/check_commands.sh
+        ./scripts/utils/check_commands.sh java curl postgres maven
             
         ./scripts/00_install_libs.sh $5
         
