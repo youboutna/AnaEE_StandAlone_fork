@@ -14,7 +14,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
    
   ./scripts/03_nano_start_stop.sh stop
     
-  ./scripts/utils/check_commands.sh java curl postgres maven
+  ./scripts/utils/check_commands.sh java curl psql mvn
    
   ./scripts/00_install_libs.sh $5
   
