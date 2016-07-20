@@ -19,30 +19,56 @@
   
     com=$1
     
-    if which $com >/dev/null ; then
+    if which $com >/dev/null ; then        
+        return 1      
+    else     
+        return 0             
+    fi
+    
+  }
+    
+  checkExit() {
+  
+    com=$1
+    exist=$2
+    
+    if [ "$exist" == 1 ] ; then 
+     
+       echo " OK .... $com "
+       sleep  0.4
         
-        echo " OK .... $com "
-        sleep 0.4
-       
     else
      
-        echo
-        echo -e "\e[91m $com  : Command not found. Aborting \e[39m" ; 
-        echo
+       echo
+       echo -e "\e[91m $com  : Command not found. Aborting \e[39m" ; 
+       echo
       
-        if [ $parent_script = "bash" ] ; then
-            exit 2
-        else
-            kill -9 `ps --pid $$ -oppid=`;
-            exit 2
-        fi
-    fi
+       if [ $parent_script = "bash" ] ; then
+           exit 2
+       else
+           kill -9 `ps --pid $$ -oppid=`;
+           exit 2
+       fi
+     
+    fi          
+  
   }
   
-  for com in "$@" ; do
+  # iterate through args
   
-    checkCommand $com
+  for com in "$@" ; do
     
+     if [[ "$com" != *-* ]]; then
+     
+         checkCommand $com
+         
+         checkExit $com $?
+    
+     else
+     
+         echo "speacial check command "
+     fi
+     
   done
 
   echo
