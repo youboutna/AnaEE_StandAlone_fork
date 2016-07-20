@@ -6,7 +6,8 @@
   if [ $# -eq 1 ] ; then
   
        OUT=$1
-       
+       mkdir -p "$(dirname "$OUT")"
+            
        NANO_END_POINT_FILE="$CURRENT_PATH/conf/nanoEndpoint"
        LINE=$(head -1 $NANO_END_POINT_FILE)
     
