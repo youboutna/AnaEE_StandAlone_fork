@@ -116,36 +116,36 @@
         
   curl -X POST $ENDPOINT/namespace/$NAMESPACE/sparql --data-urlencode \
   'query=
-     PREFIX : <http://www.anaee-france.fr/ontology/anaee-france_ontology#> 
-     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-	   PREFIX oboe-core: <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#> 
-	   PREFIX oboe-standard: <http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#>
-	   PREFIX oboe-temporal: <http://ecoinformatics.org/oboe/oboe.1.0/oboe-temporal.owl#>
-	   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX : <http://www.anaee-france.fr/ontology/anaee-france_ontology#> 
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+      PREFIX oboe-core: <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#> 
+      PREFIX oboe-standard: <http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#>
+      PREFIX oboe-temporal: <http://ecoinformatics.org/oboe/oboe.1.0/oboe-temporal.owl#>
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 	  		 
-	   CONSTRUCT { 
+      CONSTRUCT { 
          
-	     ?idVariableSynthesis   a                     :Variable             .
+            ?idVariableSynthesis   a                     :Variable             .
 		    
-	     ?idVariableSynthesis  :ofVariable            ?variable             .
-	     ?variable             :hasCategory           ?category             .
-             ?variable        	   :hasAnaeeVariableName  ?anaeeVariableName    .
-             ?variable             :hasLocalVariableName  ?localVariableName    .
-	     ?variable             :hasUnit               ?unit                 .
+	    ?idVariableSynthesis  :ofVariable            ?variable             .
+	    ?variable             :hasCategory           ?category             .
+            ?variable        	   :hasAnaeeVariableName  ?anaeeVariableName    .
+            ?variable             :hasLocalVariableName  ?localVariableName    .
+	    ?variable             :hasUnit               ?unit                 .
 	     
-	     ?unit                 :hasAnaeeUnitName      ?anaeeUnitName        .
+	    ?unit                 :hasAnaeeUnitName      ?anaeeUnitName        .
  	 
- 	     ?category             :hasCategoryName       ?categoryName         .
- 	     ?idVariableSynthesis  :hasSite               ?site                 .
- 	     ?site		   :hasLocalSiteName      ?localSiteName        . 
-             ?site	       	   :hasAnaeeSiteName      ?anaeeSiteName        .           
- 	     ?site		   :hasSiteType           ?siteType             .
- 	     ?site		   :hasSiteTypeName       ?siteTypeName         .
- 	     ?site		   :hasInfra              ?infra                .
- 	     ?infra                :hasInfraName          ?infraName            .
+ 	    ?category             :hasCategoryName       ?categoryName         .
+ 	    ?idVariableSynthesis  :hasSite               ?site                 .
+ 	    ?site		   :hasLocalSiteName      ?localSiteName        . 
+            ?site	       	   :hasAnaeeSiteName      ?anaeeSiteName        .           
+ 	    ?site		   :hasSiteType           ?siteType             .
+ 	    ?site		   :hasSiteTypeName       ?siteTypeName         .
+ 	    ?site		   :hasInfra              ?infra                .
+ 	    ?infra                :hasInfraName          ?infraName            .
  	     
- 	     ?idVariableSynthesis  :hasNbData             ?nbData               .
-	     ?idVariableSynthesis  :hasYear               ?year                 .
+ 	    ?idVariableSynthesis  :hasNbData             ?nbData               .
+	    ?idVariableSynthesis  :hasYear               ?year                 .
 	     
 	   } 
       WHERE {
