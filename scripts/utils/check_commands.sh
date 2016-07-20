@@ -39,9 +39,10 @@
     fi
   }
   
-  
   for com in "$@" ; do
+  
     checkCommand $com
+    
   done
 
   echo
