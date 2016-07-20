@@ -51,7 +51,7 @@
          checkCommand $com
          checkExit $com $?
      else
-         echo "speacial check command "
+         echo "special check command "
      fi
      
   done
