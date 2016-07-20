@@ -29,7 +29,7 @@
   fi
 
   echo -e "\e[90m Starting Generation... \e[39m "
-  
+  echo
   java -cp ../libs/yedGen.jar Main -d $INPUT -out $OUTPUT -ext $EXTENSION
 
   echo -e "\e[36m Mapping generated in : $OUTPUT \e[39m "
