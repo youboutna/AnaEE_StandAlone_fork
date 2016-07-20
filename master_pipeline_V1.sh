@@ -19,9 +19,10 @@
          
             # Clear folders on each iteration
               
-            rm $YED_GEN_FOLDER/*.*
-            rm $ONTOP_FOLDER/*.*
-            rm $CORESE_FOLDER/*.* && rm $CORESE_FOLDER/*
+            rm $YED_GEN_FOLDER/*.*  2> /dev/null
+            rm $ONTOP_FOLDER/*.*    2> /dev/null
+            rm $CORESE_FOLDER/*.*   2> /dev/null 
+            rm $CORESE_FOLDER/*     2> /dev/null
          }  
 
          chmod -R +x scripts/*
@@ -40,9 +41,17 @@
         
         ./scripts/03_nano_start_stop.sh start rw
         
-        
+        if [ ! -f $CONNEXION_FILE  ]; then
+            echo
+            echo -e "\e[91m --> Connexion file : $CONNEXION_FILE not found ! Abort \e[39m"
+            echo 
+            exit 2
+        fi
+
         for entry in `find $YED_GEN_FOLDER/* -type d -not -name '*connexion*'`; do
             
+            if [ `ls -l $entry | egrep -c '^-'` -gt 0 ] ; then
+              
               ClearFolders
               
               # Copy $CONNEXION_FILE  file to $YED_GEN_FOLDER Folder
@@ -68,6 +77,8 @@
                  sleep 0.5
               
               fi
+            fi
+            
         done
     
         ./scripts/02_docker.sh stop
