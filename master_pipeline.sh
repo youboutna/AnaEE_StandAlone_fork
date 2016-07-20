@@ -10,7 +10,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
 
    chmod -R +x scripts/*
    
-   # ./scripts/02_docker.sh stop
+   # ./scripts/02_docker_nginx.sh stop
    
   ./scripts/03_nano_start_stop.sh stop
     
@@ -32,7 +32,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   
   ./scripts/07_load_data.sh
   
-   # ./scripts/02_docker.sh stop
+   # ./scripts/02_docker_nginx.sh stop
   
   ./scripts/08_portail_query.sh ola_portal_synthesis.ttl
   
