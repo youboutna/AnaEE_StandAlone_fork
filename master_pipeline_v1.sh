@@ -27,9 +27,9 @@
 
          chmod -R +x scripts/*
         
-        ./scripts/03_nano_start_stop.sh stop
-            
         ./scripts/utils/check_commands.sh java curl psql-mysql mvn
+        
+        ./scripts/03_nano_start_stop.sh stop
             
         ./scripts/00_install_libs.sh $5
         
