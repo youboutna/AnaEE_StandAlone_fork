@@ -41,9 +41,7 @@
   
   
   for com in "$@" ; do
-    
-     checkCommand $com
-  
+    checkCommand $com
   done
 
   echo
