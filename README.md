@@ -43,5 +43,5 @@ Requirements :
     
 -    `[ Postgres ] / MySql`
 
--    `Docker 1.10 and +  Optionnal ` 
+-    `Docker 1.10 and +  ( Optionnal ) ` 
 
