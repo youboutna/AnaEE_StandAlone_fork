@@ -27,8 +27,6 @@
 
          chmod -R +x scripts/*
         
-        ./scripts/02_docker_nginx.sh stop
-        
         ./scripts/03_nano_start_stop.sh stop
             
         ./scripts/utils/check_commands.sh java curl psql-mysql mvn
@@ -37,8 +35,6 @@
         
         ./scripts/01_build_config.sh  $1 $2 $3 $4
     
-        ./scripts/02_docker_nginx.sh start
-        
         ./scripts/03_nano_start_stop.sh start rw
         
         if [ ! -f $CONNEXION_FILE  ]; then
@@ -80,8 +76,6 @@
             fi
             
         done
-    
-        ./scripts/02_docker_nginx.sh stop
         
         ClearFolders
     
