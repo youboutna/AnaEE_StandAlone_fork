@@ -1,9 +1,13 @@
 #!/bin/bash
-    
-  INPUT="../data/yedGen"
-  OUTPUT="../mapping/mapping.obda"
-  EXTENSION=".graphml"
-   
+  
+  #INPUT="../data/yedGen"
+  #OUTPUT="../mapping/mapping.obda"
+  #EXTENSION=".graphml"
+  
+  INPUT=${1:-"../data/yedGen"} 
+  OUTPUT=${2:-"../mapping/mapping.obda"}
+  EXTENSION=${3:-".graphml"}
+  
   tput setaf 2
   echo 
   echo -e " ######################################### "
