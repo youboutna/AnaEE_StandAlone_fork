@@ -12,7 +12,7 @@
     
   command -v java >/dev/null 2>&1 || { 
      echo
-     echo >&2 " Require JAVA but it's not installed.  Aborting. " ; 
+     echo " Require JAVA but it's not installed.  Aborting. " ; 
      echo
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
@@ -22,7 +22,7 @@
    
   command -v curl >/dev/null 2>&1 || { 
      echo
-     echo >&2 " Require CURL but it's not installed.  Aborting. " ; 
+     echo " Require CURL but it's not installed.  Aborting. " ; 
      echo
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
@@ -32,7 +32,7 @@
   
   command -v psql >/dev/null 2>&1 || { 
      echo
-     echo >&2 " Require POSTGRES but it's not installed.  Aborting. " ; 
+     echo " Require POSTGRES but it's not installed.  Aborting. " ; 
      echo
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
@@ -42,7 +42,7 @@
   
   command -v mvn >/dev/null 2>&1 || { 
      echo
-     echo >&2 " Require MAVEN but it's not installed.  Aborting. " ; 
+     echo " Require MAVEN but it's not installed.  Aborting. " ; 
      echo
      kill -9 `ps --pid $$ -oppid=` ; 
      exit
