@@ -8,6 +8,12 @@
 
     if [ $# -eq 4 -o $# -eq 5 ] ; then
     
+         IP_HOST="$1"
+         NAME_SPACE="$2"
+         LOCAL_PORT="$3"
+         REMOTE_PORT="$4"
+         DATABASE=${5:-psql}
+          
          YED_GEN_FOLDER="data/yedGen"
          EXTENSION_FILE="graphml"
          CONNEXION_FILE_PATTERN="$YED_GEN_FOLDER/connexion/connexion"
@@ -31,9 +37,8 @@
         
         ./scripts/03_nano_start_stop.sh stop
             
-        ./scripts/00_install_libs.sh $5
-        
-        ./scripts/01_build_config.sh  $1 $2 $3 $4
+        ./scripts/00_install_libs.sh $DATABASE
+        ./scripts/01_build_config.sh  $IP_HOST $NAME_SPACE $LOCAL_PORT $REMOTE_PORT
     
         ./scripts/03_nano_start_stop.sh start rw
         
