@@ -37,7 +37,8 @@
         
         ./scripts/03_nano_start_stop.sh stop
             
-        ./scripts/00_install_libs.sh $DATABASE
+        ./scripts/00_install_libs.sh $DATABASE splited_graphs
+        
         ./scripts/01_build_config.sh  $IP_HOST $NAME_SPACE $LOCAL_PORT $REMOTE_PORT
     
         ./scripts/03_nano_start_stop.sh start rw
