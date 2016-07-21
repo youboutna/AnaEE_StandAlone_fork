@@ -5,6 +5,18 @@
 # $2 NameSpace
 # $3 PORT Number
 
+EXIT() {
+  parent_script=`ps -ocommand= -p $PPID | awk -F/ '{print $NF}' | awk '{print $1}'`
+  if [ $parent_script = "bash" ] ; then
+      echo; echo -e " \e[90m exited by : $0 \e[39m " ; echo
+      exit 2
+  else
+      echo ; echo -e " \e[90m exited by : $0 \e[39m " ; echo
+      kill -9 `ps --pid $$ -oppid=`;
+      exit 2
+  fi
+}
+  
 releasePort() {
   PORT=$1          
   if ! lsof -i:$PORT &> /dev/null
@@ -77,8 +89,7 @@ if [ $# -eq 4 ] ; then
           # Anything pressed
           echo
           echo " Script aborted "
-          echo
-          exit 2
+          EXIT
       fi
    fi
    
@@ -106,7 +117,9 @@ if [ $# -eq 4 ] ; then
    echo -e "\e[92m Namespace created \e[39m "
    sleep 0.5 ; echo
    echo -e "\e[93m Stopping Blazegraph \e[39m "
+   
    KILL_PROCESS=$(fuser -k $L_PORT/tcp &>/dev/null )
+   
    sleep 0.5
    echo -e "\e[93m Blazegraph Stopped \e[39m "
    echo
