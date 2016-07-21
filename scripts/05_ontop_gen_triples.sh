@@ -1,11 +1,14 @@
 #!/bin/bash
     
-  OWL="../mapping/ontology.owl"
-  OBDA="../mapping/mapping.obda"
-  OUTPUT="../data/ontop/ontopMaterializedTriples.ttl"
-  QUERY="SELECT ?S ?P ?O { ?S ?P ?O } "
-  TTL="-ttl"
-    
+  OWL=${1:-"../mapping/ontology.owl"
+  OBDA=${2:-"../mapping/mapping.obda"
+  OUTPUT=${3:-"../data/ontop/ontopMaterializedTriples.ttl"
+  QUERY=${4:-"SELECT ?S ?P ?O { ?S ?P ?O } "
+  TTL=${5:-"-ttl"
+  
+  XMS=${6:-"-Xms1024M"}
+  XMX=${7:-"-Xmx2048M"}
+     
   tput setaf 2
   echo 
   echo -e " ######################################### "
@@ -34,7 +37,7 @@
   echo -e "\e[90m Strating Generation... \e[39m "
   echo
   
-  java  -Xms1024M -Xmx2048M -cp ../libs/Ontop-Materializer.jar ontop.Main_1_18 \
+  java  $XMS $XMX -cp ../libs/Ontop-Materializer.jar ontop.Main_1_18 \
   -owl  "$OWL"                                                                 \
   -obda "$OBDA"                                                                \
   -out  "$OUTPUT"                                                              \
