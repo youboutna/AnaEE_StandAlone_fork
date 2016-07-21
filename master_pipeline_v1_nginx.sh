@@ -13,6 +13,7 @@
          LOCAL_PORT="$3"
          REMOTE_PORT="$4"
          DATABASE=${5:-psql}
+         TYPE_INSTALL="splited_graphs"
           
          YED_GEN_FOLDER="data/yedGen"
          EXTENSION_FILE="graphml"
@@ -39,7 +40,7 @@
         
         ./scripts/03_nano_start_stop.sh stop
             
-        ./scripts/00_install_libs.sh $DATABASE
+        ./scripts/00_install_libs.sh $DATABASE $TYPE_INSTALL
         
         ./scripts/01_build_config.sh  $IP_HOST $NAME_SPACE $LOCAL_PORT $REMOTE_PORT
     
