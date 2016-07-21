@@ -1,6 +1,8 @@
 #!/bin/bash
    
     RW_MODE=$2
+    XMS=${3:-"-Xms3g"}
+    XMX=${4:-"-Xmx5g"}
     
     EXIT() {
        parent_script=`ps -ocommand= -p $PPID | awk -F/ '{print $NF}' | awk '{print $1}'`
@@ -61,8 +63,7 @@
              else
                echo -e "\e[91m RW_MODE Argument can only have 'rw' or 'ro' value \e[39m "
              fi 
-             echo
-             exit 2            
+             EXIT          
         fi 
         
         LINE=$(head -1 $NANO_END_POINT_FILE)        
@@ -108,14 +109,14 @@
           sleep 2         
                  
           #java -server -Djetty.port=$L_PORT -Xmx3g -jar $BLAZEGRAPH_PATH &
-          java -server -XX:+UseG1GC -Xmx3g \
-               -Xloggc:$DIR_BLZ/logs/gc.txt \
+          java -server -XX:+UseG1GC $XMS $XMX  \
+               -Xloggc:$DIR_BLZ/logs/gc.txt    \
                -verbose:gc -XX:+PrintGCDetails \
-               -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps \
+               -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps       \
                -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 \
                -XX:GCLogFileSize=5M \
                -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000 \
-               -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl \
+               -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl  \
                -Djetty.port=$L_PORT -jar $BLAZEGRAPH_PATH &
           sleep 2
           
