@@ -37,22 +37,6 @@
     NANO_END_POINT_FILE="$CURRENT_PATH/conf/nanoEndpoint"
     READ_ONLY_XML_CONF="$CURRENT_PATH/conf/blazegraph/owerrideXMl/webWithConfReadOnly.xml"
     
-    if [ ! -f $BLZ_INFO_INSTALL ]  ; then
-       echo
-       echo -e "\e[91m Missing $BLZ_INFO_INSTALL ! \e[39m "
-       EXIT
-    fi
-    if [ ! -f $NANO_END_POINT_FILE ]  ; then
-       echo
-       echo -e "\e[91m Missing $NANO_END_POINT_FILE ! \e[39m "
-       EXIT
-    fi
-    if [ ! -f $READ_ONLY_XML_CONF ]  ; then
-       echo
-       echo -e "\e[91m Missing $READ_ONLY_XML_CONF ! \e[39m "
-       EXIT
-    fi
-    
     if [ "$1" = "start" ] ; then 
         
         if [ "$RW_MODE" != "ro" ] && [ "$RW_MODE" != "rw" ] ; then 
@@ -65,6 +49,22 @@
              fi 
              EXIT          
         fi 
+        
+        if [ ! -f $BLZ_INFO_INSTALL ]  ; then
+           echo
+           echo -e "\e[91m Missing $BLZ_INFO_INSTALL ! \e[39m "
+           EXIT
+        fi
+        if [ ! -f $NANO_END_POINT_FILE ]  ; then
+           echo
+           echo -e "\e[91m Missing $NANO_END_POINT_FILE ! \e[39m "
+           EXIT
+        fi
+        if [ ! -f $READ_ONLY_XML_CONF ]  ; then
+           echo
+           echo -e "\e[91m Missing $READ_ONLY_XML_CONF ! \e[39m "
+           EXIT
+        fi
         
         LINE=$(head -1 $NANO_END_POINT_FILE)        
             
