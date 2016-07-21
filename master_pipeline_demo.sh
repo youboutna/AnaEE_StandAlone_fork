@@ -13,6 +13,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   LOCAL_PORT="$3"
   REMOTE_PORT="$4"
   DATABASE=${5:-psql}
+  TYPE_INSTALL="demo"
   
   chmod -R +x scripts/*
   
@@ -20,7 +21,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
    
   ./scripts/03_nano_start_stop.sh stop
    
-  ./scripts/00_install_libs.sh $DATABASE demo
+  ./scripts/00_install_libs.sh $DATABASE $TYPE_INSTALL
   
   ./scripts/01_build_config.sh  $IP_HOST $NAME_SPACE $LOCAL_PORT $REMOTE_PORT
 
