@@ -35,7 +35,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   
   ./scripts/07_load_data.sh
   
-  ./scripts/08_portail_query.sh ola_portal_synthesis.ttl
+  ./scripts/08_portal_query.sh ola_portal_synthesis.ttl
   
 else
 
