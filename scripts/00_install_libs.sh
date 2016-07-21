@@ -1,7 +1,23 @@
 #!/bin/bash
 
-if [ $# -eq 1 ] ; then
+if [[ $# == 0 ]] ; then
+  DATA_BASE="psql"
+fi
+
+if [[ $# == 1 && $1 != "demo" ]] ; then
   DATA_BASE=$1
+fi
+
+if [[ $# == 1 && $1 == "demo" ]] ; then
+  DATA_BASE="psql"
+  DEMO="Y"
+fi
+
+if [ $# -eq 2 ] ; then
+  DATA_BASE=$1
+  if [  $2 == "demo"  ] ; then
+     DEMO="Y"
+  fi
 fi
 
 tput setaf 2
