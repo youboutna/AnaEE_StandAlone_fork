@@ -3,7 +3,7 @@
   CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   cd $CURRENT_PATH
   
-  if [ $# -eq 1 ] ; then
+  if [ $# -eq 0 ] ; then
   
        NANO_END_POINT_FILE="$CURRENT_PATH/conf/nanoEndpoint"
        LINE=$(head -1 $NANO_END_POINT_FILE)
@@ -21,7 +21,7 @@
        
   else 
        echo
-       echo -e "\e[91m 1 or 4 arguments ( OUT_NAME_FILE / IP PORT NAMESAPCE OUT_NAME_FILE ) ! \e[39m "
+       echo -e "\e[91m 0 or 4 arguments ( IP PORT NAMESAPCE OUT_NAME_FILE ) ! \e[39m "
        echo
        exit 3
   fi
