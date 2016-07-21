@@ -1,24 +1,10 @@
 #!/bin/bash
 
-if [[ $# == 0 ]] ; then
-  DATA_BASE="psql"
-fi
+# DATABSE : spql - mysql 
+# DEMO    : demo - splited_graphs - full_graphs
 
-if [[ $# == 1 && $1 != "demo" ]] ; then
-  DATA_BASE=$1
-fi
-
-if [[ $# == 1 && $1 == "demo" ]] ; then
-  DATA_BASE="psql"
-  DEMO="Y"
-fi
-
-if [ $# -eq 2 ] ; then
-  DATA_BASE=$1
-  if [  $2 == "demo"  ] ; then
-     DEMO="Y"
-  fi
-fi
+DATABASE=${1:-"psql"}
+DEMO=${2:-"splited_graphs"}
 
 tput setaf 2
 echo 
@@ -165,9 +151,22 @@ mv -v $ROOT_PATH/$DIRECTORY_LIBS/$TMP/$DOCUMENTATION_FILE_NAME \
 
 # cp -R $ROOT_PATH/$DIRECTORY_LIBS/$DOCS/$DIRECTORY_DATA_YEDGEN/$EXAMPLES/* \
 #       $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
-      
-cp -r $ROOT_PATH/$DIRECTORY_LIBS/$DOCS/$DIRECTORY_DATA_YEDGEN/$EXAMPLES/physicochimie_mapping/byDatatypes/* \
-      $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
+
+if   [ $DEMO == "demo" ] ; then 
+
+  cp -r $ROOT_PATH/$DIRECTORY_LIBS/$DOCS/$DIRECTORY_DATA_YEDGEN/$EXAMPLES/demo/*.* \
+        $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
+
+elif [ $DEMO == "splited_graphs" ] ; then 
+
+  cp -r $ROOT_PATH/$DIRECTORY_LIBS/$DOCS/$DIRECTORY_DATA_YEDGEN/$EXAMPLES/ola_mapping/splited_graphs/* \
+        $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
+        
+elif [ $DEMO == "full_graphs" ] ; then 
+
+  cp -r $ROOT_PATH/$DIRECTORY_LIBS/$DOCS/$DIRECTORY_DATA_YEDGEN/$EXAMPLES/ola_mapping/full_graphs/byCategory/physicochimie/dissolvedAmmoniumNitrogenMassConcentration/*.* \
+        $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
+fi
 
 rm -rf $ROOT_PATH/$DIRECTORY_LIBS/$TMP/* $ROOT_PATH/$DIRECTORY_LIBS/$TMP/.git
 
