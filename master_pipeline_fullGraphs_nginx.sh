@@ -41,7 +41,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   
   ./scripts/02_docker_nginx.sh stop
   
-  ./scripts/08_portail_query.sh ola_portal_synthesis.ttl
+  ./scripts/08_portal_query.sh ola_portal_synthesis.ttl
   
 else
 
