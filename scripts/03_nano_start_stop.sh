@@ -2,6 +2,18 @@
    
     RW_MODE=$2
     
+    EXIT() {
+       parent_script=`ps -ocommand= -p $PPID | awk -F/ '{print $NF}' | awk '{print $1}'`
+       if [ $parent_script = "bash" ] ; then
+           echo; echo -e " \e[90m exited by : $0 \e[39m " ; echo
+           exit 2
+       else
+           echo ; echo -e " \e[90m exited by : $0 \e[39m " ; echo
+           kill -9 `ps --pid $$ -oppid=`;
+           exit 2
+       fi
+    }
+    
     releasePort() {
       PORT=$1          
       if ! lsof -i:$PORT &> /dev/null
@@ -22,6 +34,22 @@
     BLZ_INFO_INSTALL="$CURRENT_PATH/conf/BLZ_INFO_INSTALL"
     NANO_END_POINT_FILE="$CURRENT_PATH/conf/nanoEndpoint"
     READ_ONLY_XML_CONF="$CURRENT_PATH/conf/blazegraph/owerrideXMl/webWithConfReadOnly.xml"
+    
+    if [ ! -f $BLZ_INFO_INSTALL ]  ; then
+       echo
+       echo -e "\e[91m Missing $BLZ_INFO_INSTALL ! \e[39m "
+       EXIT
+    fi
+    if [ ! -f $NANO_END_POINT_FILE ]  ; then
+       echo
+       echo -e "\e[91m Missing $NANO_END_POINT_FILE ! \e[39m "
+       EXIT
+    fi
+    if [ ! -f $READ_ONLY_XML_CONF ]  ; then
+       echo
+       echo -e "\e[91m Missing $READ_ONLY_XML_CONF ! \e[39m "
+       EXIT
+    fi
     
     if [ "$1" = "start" ] ; then 
         
