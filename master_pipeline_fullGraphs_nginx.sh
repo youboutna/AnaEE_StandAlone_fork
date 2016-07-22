@@ -27,7 +27,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   
   ./scripts/01_build_config.sh  $IP_HOST $NAME_SPACE $LOCAL_PORT $REMOTE_PORT
 
-  ./scripts/02_docker.sh start
+  ./scripts/02_docker_nginx.sh start
    
   ./scripts/03_nano_start_stop.sh start rw
   
