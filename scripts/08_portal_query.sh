@@ -187,7 +187,7 @@
 	        ?obs_variable_03 a oboe-core:Observation ; 
 			           oboe-core:ofEntity :Variable ; 
 			           oboe-core:hasMeasurement ?measu_variableStandardName_05 ; 
-	               oboe-core:hasMeasurement ?measu_variableLocalName_04 ; 
+	                           oboe-core:hasMeasurement ?measu_variableLocalName_04 ; 
 			           oboe-core:hasContext ?obs_categ_06 .
 	         
 	        ?obs_categ_06 a oboe-core:Observation ; 
@@ -241,11 +241,11 @@
 			             oboe-core:ofEntity :ExperimentalNetwork ;
 			             oboe-core:hasMeasurement ?measu_expNetWorkName_66.
 		
-		      ?measu_expNetWorkName_66 a oboe-core:Measurement ; 
-			                         oboe-core:usesStandard :Anaee-franceExperimentalNetworkNamingStandard ; 
-			                         oboe-core:hasValue ?infra .
+		?measu_expNetWorkName_66 a oboe-core:Measurement ; 
+			                   oboe-core:usesStandard :Anaee-franceExperimentalNetworkNamingStandard ; 
+			                   oboe-core:hasValue ?infra .
 			            
-		      ?infra rdfs:label ?infraName .
+		?infra rdfs:label ?infraName .
 		
 	        ?meas_siteNameStandard_64 a oboe-core:Measurement ; 
 			                    oboe-core:usesStandard :Anaee-franceExperimentalSiteNamingStandard ; 
@@ -267,10 +267,11 @@
 	                                     ?categoryName, "_", 
 	                                     ?anaeeVariableName, "_",
 	                                     str(?year) ) , " ", "_") ) AS ?idVariableSynthesis ) 
-	    }  
-      GROUP BY ?infra ?infraName ?idVariableSynthesis ?site ?anaeeSiteName ?localSiteName 
-               ?siteType ?siteTypeName ?category ?categoryName ?variable ?anaeeVariableName
-               ?localVariableName ?unit ?anaeeUnitName ?year
+	    } 
+	    
+            GROUP BY ?infra ?infraName ?idVariableSynthesis ?site ?anaeeSiteName ?localSiteName 
+            ?siteType ?siteTypeName ?category ?categoryName ?variable ?anaeeVariableName
+            ?localVariableName ?unit ?anaeeUnitName ?year
      }
      ' \
     -H 'Accept:text/rdf+n3' > $OUT
