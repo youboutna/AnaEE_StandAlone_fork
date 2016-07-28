@@ -8,7 +8,19 @@
   
   XMS=${6:-"-Xms1024M"}
   XMX=${7:-"-Xmx2048M"}
-     
+  
+  EXIT() {
+     parent_script=`ps -ocommand= -p $PPID | awk -F/ '{print $NF}' | awk '{print $1}'`
+     if [ $parent_script = "bash" ] ; then
+         echo; echo -e " \e[90m exited by : $0 \e[39m " ; echo
+         exit 2
+     else
+         echo ; echo -e " \e[90m exited by : $0 \e[39m " ; echo
+         kill -9 `ps --pid $$ -oppid=`;
+         exit 2
+     fi
+  } 
+    
   tput setaf 2
   echo 
   echo -e " ######################################### "
@@ -31,7 +43,7 @@
  
   if [ ! -f $OWL ]  || [ ! -f $OBDA ]  ; then
      echo -e "\e[91m Missing OWL or OBDA Files ! \e[39m "
-     exit 3
+     EXIT
   fi
   
   echo -e "\e[90m Strating Generation... \e[39m "
