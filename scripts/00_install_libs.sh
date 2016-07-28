@@ -170,7 +170,7 @@ elif [ $DEMO == "splited_graphs" ] ; then
   cp -rf $ROOT_PATH/$DIRECTORY_LIBS/$DOCS/$DIRECTORY_DATA_YEDGEN/$EXAMPLES/ola_mapping/splited_graphs/* \
          $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
 
-elif [ $DEMO == "splitedPattern_graphs" ] ; then 
+elif [ $DEMO == "splitedPatternGgraphs" ] ; then 
 
   cp -rf $ROOT_PATH/$DIRECTORY_LIBS/$DOCS/$DIRECTORY_DATA_YEDGEN/$EXAMPLES/ola_mapping/pattern_splited_graphs/* \
          $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
