@@ -3,7 +3,10 @@
 # DATABSE : spql - mysql 
 # DEMO    : demo - splited_graphs - full_graphs
 
-if [[ $# == 1 && $1 != "demo" && $1 != "splited_graphs" && $1 != "full_graphs" ]] ; then
+if [ $# == 0 ] ; then
+    DATA_BASE="psql"
+    DEMO="demo"
+elif [[ $# == 1 && $1 != "demo" && $1 != "splited_graphs" && $1 != "full_graphs" ]] ; then
     DATA_BASE=$1
     DEMO=${2:-"splited_graphs"}
 elif [[ $# == 1 && ( $1 == "demo" || $1 == "splited_graphs" || $1 == "full_graphs" ) ]] ; then
