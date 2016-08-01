@@ -82,6 +82,9 @@
                  ./scripts/07_load_data.sh
             
                  sleep 0.5
+                 
+                 rm $CORESE_FOLDER/*.* 2> /dev/null 
+		         rm $CORESE_FOLDER/*   2> /dev/null
               
               fi
             fi
