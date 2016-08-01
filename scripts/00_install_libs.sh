@@ -281,7 +281,8 @@ echo
 sleep 2
 tput setaf 7
 
-wget https://sourceforge.net/projects/bigdata/files/bigdata/2.1.2/blazegraph.jar -O $ROOT_PATH/$DIRECTORY_LIBS/$BLAZEGRAPH_LOCATION/$BLAZEGRAPH_TARGET_NAME
+# wget https://sourceforge.net/projects/bigdata/files/bigdata/2.1.2/blazegraph.jar -O $ROOT_PATH/$DIRECTORY_LIBS/$BLAZEGRAPH_LOCATION/$BLAZEGRAPH_TARGET_NAME
+wget https://github.com/rac021/blazegraph_libs/blob/master/Blazegraph_2.1.jar -O $ROOT_PATH/$DIRECTORY_LIBS/$BLAZEGRAPH_LOCATION/$BLAZEGRAPH_TARGET_NAME
 
 echo "../$DIRECTORY_LIBS/$BLAZEGRAPH_LOCATION/$BLAZEGRAPH_TARGET_NAME" >  $ROOT_PATH/$CURRENT_DIRECTORY/$DIRECTORY_DATA_CONFIG/$BLAZEGRAPG_INFO_INSTALL
 
