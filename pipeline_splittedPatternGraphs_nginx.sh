@@ -13,7 +13,7 @@
          LOCAL_PORT="$3"
          REMOTE_PORT="$4"
          DATABASE=${5:-psql}
-         TYPE_INSTALL="splitedPatternGgraphs"
+         TYPE_INSTALL="splitedPatternGraphs"
           
          YED_GEN_FOLDER="data/yedGen"
          EXTENSION_FILE="graphml"
