@@ -6,10 +6,10 @@
 if [ $# == 0 ] ; then
     DATA_BASE="psql"
     DEMO="demo"
-elif [[ $# == 1 && $1 != "demo" && $1 != "splited_graphs" && $1 != "full_graphs" ]] ; then
+elif [[ $# == 1 && $1 != "demo" && $1 != "splited_graphs" && $1 != "full_graphs" &&  $1 != "splitedPatternGraphs" ]] ; then
     DATA_BASE=$1
     DEMO=${2:-"splited_graphs"}
-elif [[ $# == 1 && ( $1 == "demo" || $1 == "splited_graphs" || $1 == "full_graphs" ) ]] ; then
+elif [[ $# == 1 && ( $1 == "demo" || $1 == "splited_graphs" || $1 == "full_graphs" ||  $1 == "splitedPatternGraphs" ) ]] ; then
     DATA_BASE="psql"
     DEMO=$1
 elif [ $# -eq 2 ] ; then
@@ -174,7 +174,7 @@ elif [ $DEMO == "splited_graphs" ] ; then
          $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
 
 elif [ $DEMO == "splitedPatternGraphs" ] ; then 
-
+              
   cp -rf $ROOT_PATH/$DIRECTORY_LIBS/$DOCS/$DIRECTORY_DATA_YEDGEN/$EXAMPLES/ola_mapping/pattern_splited_graphs/* \
          $ROOT_PATH/$DIRECTORY_DATA/$DIRECTORY_DATA_YEDGEN
          
