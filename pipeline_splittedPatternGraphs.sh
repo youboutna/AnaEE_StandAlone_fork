@@ -105,7 +105,7 @@
         
         ClearFolders
     
-        #./scripts/08_portal_query.sh ../data/portail/ola_portal_synthesis.ttl
+        ./scripts/08_portal_query.sh ../data/portail/ola_portal_synthesis.ttl
     
     else
 
