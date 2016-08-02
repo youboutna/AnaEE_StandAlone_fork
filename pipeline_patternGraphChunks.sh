@@ -14,7 +14,7 @@
          REMOTE_PORT="$4"
          DATABASE=${5:-psql}
          
-         TYPE_INSTALL="splitedPatternGraphs"
+         TYPE_INSTALL="patternGraphChunks"
     
          TMP_MAPPING_FOCLER="mapping/subMappings"
     
