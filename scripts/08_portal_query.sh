@@ -208,7 +208,7 @@
 	        # ?variable rdfs:label ?anaeeVariableName .
 	        
 	 	OPTIONAL { ?variable rdfs:label ?anaeeVariableName . }
-           	BIND(xsd:string(if(?variable = "", ?anaeeVariableName, "NULL_anaeeVariableName")) AS ?anaeeVariableName) .
+           	BIND(xsd:string(if(?variable = "", "NULL_anaeeVariableName", ?anaeeVariableName )) AS ?anaeeVariableName) .
            	
 	        ?measu_variableStandardName_05 a oboe-core:Measurement ; 
 	   	                                 oboe-core:usesStandard :Anaee-franceVariableNamingStandard ; 
