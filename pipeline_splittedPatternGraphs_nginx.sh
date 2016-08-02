@@ -83,9 +83,10 @@
             
                  sleep 0.5
                  
+                 rm $ONTOP_FOLDER/*.*  2> /dev/null
                  rm $CORESE_FOLDER/*.* 2> /dev/null 
-		         rm $CORESE_FOLDER/*   2> /dev/null
-              
+		 rm $CORESE_FOLDER/*   2> /dev/null
+		 
               fi
             fi
             
