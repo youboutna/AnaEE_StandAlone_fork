@@ -13,7 +13,8 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   LOCAL_PORT="$3"
   REMOTE_PORT="$4"
   DATABASE=${5:-psql}
-  TYPE_INSTALL="full_graphs"
+  
+  TYPE_INSTALL="fullGraph"
   
   chmod -R +x scripts/*
    
