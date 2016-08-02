@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# DATABSE : spql - mysql 
-# DEMO    : demo - fullGraph - graphChunks - patternGraphChunks
+# DATABSE       : spql - mysql 
+# TYPE_INSTALL  : demo - fullGraph - graphChunks - patternGraphChunks
 
 if [ $# == 0 ] ; then
     DATA_BASE="psql"
