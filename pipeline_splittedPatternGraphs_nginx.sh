@@ -13,8 +13,19 @@
          LOCAL_PORT="$3"
          REMOTE_PORT="$4"
          DATABASE=${5:-psql}
+         
          TYPE_INSTALL="splitedPatternGraphs"
-          
+    
+         TMP_MAPPING_FOCLER="mapping/subMappings"
+    
+         INPUT_GEN="../data/yedGen"
+         OUTPUT_FILE_GEN="../$TMP_MAPPING_FOCLER/mapping.obda"
+         EXTENSION_GEN=".graphml"
+         
+         OUTPUT_FILE_MAPPING="mapping/"
+        
+         DEFAULT_MAPPING_NAME="mapping.obda"
+        
          YED_GEN_FOLDER="data/yedGen"
          EXTENSION_FILE="graphml"
          CONNEXION_FILE_PATTERN="$YED_GEN_FOLDER/connexion/connexion"
@@ -26,15 +37,17 @@
          
             # Clear folders on each iteration
               
-            rm $YED_GEN_FOLDER/*.*  2> /dev/null
-            rm $ONTOP_FOLDER/*.*    2> /dev/null
-            rm $CORESE_FOLDER/*.*   2> /dev/null 
-            rm $CORESE_FOLDER/*     2> /dev/null
+            rm $YED_GEN_FOLDER/*.*      2> /dev/null
+            rm $ONTOP_FOLDER/*.*        2> /dev/null
+            rm $ONTOP_FOLDER/*          2> /dev/null
+            rm $CORESE_FOLDER/*.*       2> /dev/null 
+            rm $CORESE_FOLDER/*         2> /dev/null
+            rm $TMP_MAPPING_FOCLER/*.*  2> /dev/null
          }  
 
-         chmod -R +x scripts/*
+        chmod -R +x scripts/*
         
-        ./scripts/utils/check_commands.sh java curl psql-mysql mvn docker
+        ./scripts/utils/check_commands.sh java curl psql-mysql mvn
         
         ./scripts/02_docker_nginx.sh stop
         
@@ -48,15 +61,10 @@
         
         ./scripts/03_nano_start_stop.sh start rw
         
-        if [ ! -f $CONNEXION_FILE  ]; then
-            echo
-            echo -e "\e[91m --> Connexion file : $CONNEXION_FILE not found ! Abort \e[39m"
-            echo 
-            exit 2
-        fi
-
+        mkdir -p $TMP_MAPPING_FOCLER
+        
         for entry in `find $YED_GEN_FOLDER/* -type d -not -name '*connexion*'`; do
-            
+             
             if [ `ls -l $entry | egrep -c '^-'` -gt 0 ] ; then
               
               ClearFolders
@@ -72,29 +80,39 @@
               # Check if $YED_GEN_FOLDER Folder contains more than 2 files ( connexion.graphml included )
               
               if [ `ls -l $YED_GEN_FOLDER | egrep -c '^-'` -gt 1 ] ; then 
+              
                 
-                 ./scripts/04_gen_mapping.sh
-         
-                 ./scripts/05_ontop_gen_triples.sh
-        
-                 ./scripts/06_corese_infer.sh
-        
-                 ./scripts/07_load_data.sh
+                 ./scripts/04_gen_mapping.sh $INPUT_GEN $OUTPUT_FILE_GEN $EXTENSION_GEN
+                
+                  for obdaMapping in `ls $TMP_MAPPING_FOCLER ` ; do
+                  
+                        echo ; echo " --> Treat file mapping  -  $obdaMapping " ; echo
+                   
+                        mv $TMP_MAPPING_FOCLER/$obdaMapping $OUTPUT_FILE_MAPPING/$DEFAULT_MAPPING_NAME
+                        
+                        ./scripts/05_ontop_gen_triples.sh
             
-                 sleep 0.5
+                        ./scripts/06_corese_infer.sh
+                
+                        ./scripts/07_load_data.sh
+                
+                        sleep 0.5
+                        
+                        rm $ONTOP_FOLDER/*.*  2> /dev/null
+                        rm $ONTOP_FOLDER/*    2> /dev/null
+                 	rm $CORESE_FOLDER/*.* 2> /dev/null 
+		 	rm $CORESE_FOLDER/*   2> /dev/null
+		                
+                 done
                  
-                 rm $ONTOP_FOLDER/*.*  2> /dev/null
-                 rm $CORESE_FOLDER/*.* 2> /dev/null 
-		 rm $CORESE_FOLDER/*   2> /dev/null
-		 
               fi
             fi
             
         done
-    
-        ./scripts/02_docker_nginx.sh stop
         
         ClearFolders
+    
+        ./scripts/02_docker_nginx.sh stop
     
         ./scripts/08_portal_query.sh ../data/portail/ola_portal_synthesis.ttl
     
