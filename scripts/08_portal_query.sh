@@ -204,11 +204,10 @@
      	   	                              oboe-core:usesStandard :NamingStandard ; 
 		            	              oboe-core:hasValue ?localVariableName .
 	
-	
 	        # ?variable rdfs:label ?anaeeVariableName .
 	        
 	 	OPTIONAL { ?variable rdfs:label ?anaeeVariableName . }
-           	BIND(xsd:string(if(?variable = "", "NULL_anaeeVariableName", ?anaeeVariableName )) AS ?anaeeVariableName) .
+           	BIND(xsd:string( IF (?anaeeVariableName = "", "NULL_anaeeVariableName", ?anaeeVariableName )) AS ?anaeeVariableName) .
            	
 	        ?measu_variableStandardName_05 a oboe-core:Measurement ; 
 	   	                                 oboe-core:usesStandard :Anaee-franceVariableNamingStandard ; 
