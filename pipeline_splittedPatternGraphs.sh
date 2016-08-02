@@ -39,6 +39,7 @@
               
             rm $YED_GEN_FOLDER/*.*      2> /dev/null
             rm $ONTOP_FOLDER/*.*        2> /dev/null
+            rm $ONTOP_FOLDER/*          2> /dev/null
             rm $CORESE_FOLDER/*.*       2> /dev/null 
             rm $CORESE_FOLDER/*         2> /dev/null
             rm $TMP_MAPPING_FOCLER/*.*  2> /dev/null
