@@ -35,7 +35,7 @@
       mysql     
 ```
      
-Included Projects : 
+**Included Projects :**
 
 -    [https://github.com/rac021/yedGen]( https://github.com/rac021/yedGen)
 
@@ -46,7 +46,7 @@ Included Projects :
 -    [Blazegraph 2.1.1]( https://www.blazegraph.com/)   
    
 
-Requirements :
+**Requirements :**
 
 -    `JAVA 8`
     
