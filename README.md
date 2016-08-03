@@ -12,7 +12,20 @@
 
 -    `$5 : DATA_BASE { [postgresql] - mysql }`
 
-Ex :
+**Example :**
+
+   1 - Using Postgresql database ( default installation ) :
+
+```
+    ❯   ./pipeline_fullGraph.sh \
+          localhost             \
+          ola                   \
+          6981                  \
+          6982                  \
+```
+    
+   2 - Using Mysql database :
+
 ```
 ❯   ./pipeline_fullGraph.sh \
       localhost             \
@@ -21,7 +34,6 @@ Ex :
       6982                  \
       mysql     
 ```
-
      
 Included Projects : 
 
