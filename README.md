@@ -13,14 +13,15 @@
 -    `$5 : DATA_BASE { [postgresql] - mysql }`
 
 Ex :
+```
+❯   ./pipeline_fullGraph.sh \
+      localhost             \
+      ola                   \
+      6981                  \
+      6982                  \
+      mysql     
+```
 
-    ./master_pipeline.sh  \
-      localhost           \
-      ola                 \
-      6981                \
-      6982                \
-      mysql               
-     
      
 Included Projects : 
 
