@@ -63,6 +63,13 @@
         
         mkdir -p $TMP_MAPPING_FOCLER
         
+        if [ ! -f $CONNEXION_FILE  ]; then
+	    echo
+	    echo -e "\e[91m --> Connexion file : $CONNEXION_FILE not found ! Abort \e[39m"
+	    echo 
+	    exit 2
+	fi
+	
         for entry in `find $YED_GEN_FOLDER/* -type d -not -name '*connexion*'`; do
              
             if [ `ls -l $entry | egrep -c '^-'` -gt 0 ] ; then
