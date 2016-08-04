@@ -1,6 +1,6 @@
 #!/bin/bash
    
-    RW_MODE=$2
+    RW_MODE=${2:-"ro"}
     XMS=${3:-"-Xms3g"}
     XMX=${4:-"-Xmx5g"}
     
@@ -117,6 +117,7 @@
                -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000 \
                -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl  \
                -Djetty.port=$L_PORT -jar $BLAZEGRAPH_PATH &
+               
           sleep 2
           
         # Run On Remote Port 
@@ -147,6 +148,7 @@
                -server -Dorg.eclipse.jetty.server.Request.maxFormContentSize=2000000000 \
                -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl  \
                -Djetty.overrideWebXml=$READ_ONLY_XML_CONF -Djetty.port=$R_PORT -jar $BLAZEGRAPH_PATH &
+               
           sleep 2        
         fi
        
