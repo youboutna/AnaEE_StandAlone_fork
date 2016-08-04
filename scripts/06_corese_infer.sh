@@ -14,7 +14,7 @@
   OUTPUT=${4:-"../data/corese"}
   f=${5:-"100000"}
   F=${6:-"ttl"}
-  XMS=${7:-"-Xms1024M"}
+  XMS=${7:-"-Xms2048M"}
   XMX=${8:-"-Xmx2048M"}
 
   EXIT() {
