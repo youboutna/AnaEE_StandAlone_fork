@@ -6,7 +6,7 @@
   QUERY=${4:-"SELECT ?S ?P ?O { ?S ?P ?O } "}
   TTL=${5:-"-ttl"}
   
-  XMS=${6:-"-Xms1024M"}
+  XMS=${6:-"-Xms2048M"}
   XMX=${7:-"-Xmx2048M"}
   
   EXIT() {
