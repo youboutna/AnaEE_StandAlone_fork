@@ -98,7 +98,7 @@ if [ $# -eq 4 ] ; then
    releasePort $L_PORT  
    releasePort $R_PORT  
 
-   java -server -XX:+UseG1GC -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl -Djetty.port=$L_PORT -Dcom.bigdata.rdf.sail.namespace=ola -jar $BLAZEGRAPH_PATH &
+   java -server -XX:+UseG1GC -Dcom.bigdata.journal.AbstractJournal.file=$DIR_BLZ/data/blazegraph.jnl -Djetty.port=$L_PORT -Dcom.bigdata.rdf.sail.namespace=$NAMESPACE  -jar $BLAZEGRAPH_PATH &
    
    sleep 3
    
