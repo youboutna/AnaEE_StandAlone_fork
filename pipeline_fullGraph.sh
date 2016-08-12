@@ -28,7 +28,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
 
   ./scripts/03_nano_start_stop.sh start rw
   
-  ./scripts/04_gen_mapping.sh
+  #./scripts/04_gen_mapping.sh
   
   ./scripts/05_ontop_gen_triples.sh
   
@@ -37,7 +37,7 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   ./scripts/07_load_data.sh
   
  # ./scripts/08_portal_query.sh ../data/portail/ola_portal_synthesis.ttl
-./scripts/08_portail_query_record_include.sh  ../data/portail/selectresult
+./scripts/08_portail_query_record_include.sh  ../data/record/selectresult
   
 else
 
