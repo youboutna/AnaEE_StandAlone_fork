@@ -1,7 +1,7 @@
 #!/bin/bash
 
   # Default Arguments 
-    # OWL="../mapping/anaeefrance.owl"
+    # OWL="../mapping/ontology.owl"
     # TTL="../data/ontop/ontopMaterializedTriples.ttl"
     # QUERY=" SELECT ?S ?P ?O { ?S ?P ?O } "
     # OUTPUT="../data/corese"
@@ -9,9 +9,9 @@
     # F="ttl"
  
   OWL=${1:-"../mapping/anaeefrance.owl"}
-  TTL=${2:-"../data/ontop/MaterializedTriples.ttl"}
+  TTL=${2:-"../data/vsoil/official_pools.rdf"}
   QUERY=${3:-" SELECT ?S ?P ?O { ?S ?P ?O } "}
-  OUTPUT=${4:-"../data/corese/record"}
+  OUTPUT=${4:-"../data/corese/vsoil"}
   f=${5:-"100000"}
   F=${6:-"ttl"}
   XMS=${7:-"-Xms2048M"}

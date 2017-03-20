@@ -1,8 +1,8 @@
 #!/bin/bash
     
-  OWL=${1:-"../mapping/ontology.owl"}
-  OBDA=${2:-"../mapping/mapping.obda"}
-  OUTPUT=${3:-"../data/ontop/ontopMaterializedTriples.ttl"}
+  OWL=${1:-"../mapping/anaeefrance.owl"}
+  OBDA=${2:-"../mapping/anaeefrance.obda"}
+  OUTPUT=${3:-"../data/ontop/MaterializedTriples.ttl"}
   QUERY=${4:-"SELECT ?S ?P ?O { ?S ?P ?O } "}
   TTL=${5:-"-ttl"}
   

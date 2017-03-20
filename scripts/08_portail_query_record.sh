@@ -117,73 +117,98 @@
 
   portail_query='
     	PREFIX dc:<http://purl.org/dc/elements/1.1/>
-	PREFIX wgs84_pos:<http://www.w3.org/2003/01/geo/wgs84_pos#>
-	PREFIX foaf:<http://xmlns.com/foaf/0.1/>
-	PREFIX org:<http://www.w3.org/ns/org#>
-	PREFIX dcterms:<http://purl.org/dc/terms/>
-	PREFIX time:<http://www.w3.org/2006/time#>
-	PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
-	PREFIX doap:<http://usefulinc.com/ns/doap#>
-	PREFIX oboe-core:<http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#>
-	PREFIX oboe-char:<http://ecoinformatics.org/oboe/oboe.1.0/oboe-characteristics.owl#>
-	PREFIX  oboe-spatial:<http://ecoinformatics.org/oboe/oboe.1.0/oboe-spatial.owl#>
-	PREFIX anaee:<http://www.anaee-france.fr/ontology/anaee-france_ontology#>
-	PREFIX standard:<http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#>
-	PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-	PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-	PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
-	PREFIX skosxl:<http://www.w3.org/2008/05/skos-xl#>
-	SELECT DISTINCT  ?ecosystemes  ?plateforme ?modele  ?variablesimulate ?auteur ?publication ?project    WHERE {
-		
-		?modeleObs a oboe-core:Observation; oboe-core:ofEntity anaee:Model; oboe-core:hasMeasurement ?modeleMeasurement.
+				PREFIX wgs84_pos:<http://www.w3.org/2003/01/geo/wgs84_pos#>
+				PREFIX foaf:<http://xmlns.com/foaf/0.1/>
+				PREFIX org:<http://www.w3.org/ns/org#>
+				PREFIX dcterms:<http://purl.org/dc/terms/>
+				PREFIX time:<http://www.w3.org/2006/time#>
+				PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+				PREFIX doap:<http://usefulinc.com/ns/doap#>
+				PREFIX oboe-core:<http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#>
+				PREFIX oboe-char:<http://ecoinformatics.org/oboe/oboe.1.0/oboe-characteristics.owl#>
+				PREFIX  oboe-spatial:<http://ecoinformatics.org/oboe/oboe.1.0/oboe-spatial.owl#>
+				PREFIX anaee:<http://www.anaee-france.fr/ontology/anaee-france_ontology#>
+				PREFIX standard:<http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#>
+				PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+				PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+				PREFIX skosxl:<http://www.w3.org/2008/05/skos-xl#>
+	
+				SELECT DISTINCT  ?modele  ?variablesimulate  ?process ?module   ?ecosystemes   ?person ?auteur  ?plateforme  ?plateformeuri ?publication ?project  ?url ?projectname  WHERE {
+				{
+				 ?modeleObs a oboe-core:Observation; oboe-core:ofEntity anaee:Model.
+				 ?modeleObs oboe-core:hasMeasurement ?modeleMeasurement.
+                  ?modeleMeasurement  oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?modele.
+                  
+                  ?modeleObs anaee:hasModellingInput ?inputmodeleObs.
+                  ?modeleObs anaee:hasModellingOutput ?outputmodeleObs.
+				
+                  ?inputmodeleObs oboe-core:ofEntity anaee:Inout; oboe-core:hasMeasurement ?inputMeasurement.
+                  ?outputmodeleObs oboe-core:ofEntity anaee:Inout; oboe-core:hasMeasurement ?outputMeasurement.
 
-		?modeleMeasurement a oboe-core:Measurement ; oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?modele.
-
-		?modeleObs anaee:hasModellingInput ?inputmodeleObs.
-		?modeleObs anaee:hasModellingOutput ?outputmodeleObs.
-		
-
-		?inputmodeleObs a oboe-core:Observation; oboe-core:ofEntity anaee:Inout; oboe-core:hasMeasurement ?inputMeasurement.
-		?outputmodeleObs a oboe-core:Observation; oboe-core:ofEntity anaee:Inout; oboe-core:hasMeasurement ?outputMeasurement.
-
-		{?inputMeasurement a oboe-core:Measurement ; oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?variablesimulate.}
-		UNION 
-		{?outputMeasurement a oboe-core:Measurement ; oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?variablesimulate.}
-      
-		OPTIONAL { 
-			 ?modelObs oboe-core:hasContext ?plateformecontext.
-			?modelObs oboe-core:hasContext ?ecosystemescontext.
-		   
-			?plateformecontext a oboe-core:Observation; oboe-core:ofEntity ?plateformeuri.
-			?plateformeuri  rdfs:subClassOf* anaee:ModellingPlatform; rdfs:label ?platforme.		
-
-			?ecosystemescontext a oboe-core:Observation; oboe-core:ofEntity ?ecosystemesuri.  
-
-			?ecosystemesuri rdfs:subClassOf*  anaee:Ecosystem; rdfs:label ?ecosystemes. 
-          	        FILTER(LANGMATCHES(LANG(?ecosystemes), "en"))
-	       		FILTER(LANGMATCHES(LANG(?plateforme), "en"))
-		    
-		    }
-
-		OPTIONAL {
-
-			?modelObs anaee:hasPublication  ?publicationcontext. 
-			?modelObs anaee:ispartOfProject  ?projectcontext.
-			?modelObs anaee:hasAuthor ?personcontext.
-
-			?personcontext a oboe-core:Observation; oboe-core:ofEntity ?person.
-			 ?person a anaee:Person; foaf:name ?auteur.		
-			 
-			?projectcontext a oboe-core:Observation; oboe-core:ofEntity ?project.
-
-			?project a anaee:Project; doap:homepage ?url; foaf:name ?projectname.
-
-			?publicationcontext  a oboe-core:Observation; oboe-core:ofEntity ?publication.
-
-			?publication a anaee:Publication.
-
-		}
-
+                  {?inputMeasurement  oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?variablesimulate.}
+                  UNION 
+                  {?outputMeasurement  oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?variablesimulate.}
+                  
+                                     ?modeleObs oboe-core:hasContext ?plateformecontext.
+                  ?plateformecontext  oboe-core:ofEntity ?plateformeuri.
+                  ?plateformeuri rdfs:subClassOf* anaee:Record; rdfs:label ?plateforme.
+				
+                  ?modeleObs oboe-core:hasContext ?ecosystemescontext.
+                  ?ecosystemescontext  oboe-core:ofEntity ?ecosystemesuri.  
+                  ?ecosystemesuri rdfs:subClassOf*  anaee:Ecosystem; rdfs:label ?ecosystemes. 
+                 
+                 ?modeleObs anaee:hasAuthor ?personcontext.
+                 ?personcontext  oboe-core:ofEntity ?person.
+                 ?person a anaee:Person; foaf:name ?auteur.	
+                  
+			   OPTIONAL {
+                 ?modeleObs anaee:hasPublication  ?publicationcontext. 
+                 ?publicationcontext  oboe-core:ofEntity ?publication.
+                 ?publication a anaee:Publication.
+                 ?modeleObs anaee:ispartOfProject  ?projectcontext.
+                 ?projectcontext  oboe-core:ofEntity ?project.
+                 ?project a anaee:Project; doap:homepage ?url; foaf:name ?projectname.
+						}	
+				
+				FILTER(LANGMATCHES(LANG(?plateforme), "en"))
+				FILTER(LANGMATCHES(LANG(?ecosystemes), "en"))
+				}    
+			  UNION {
+				    
+                  ?modeleObs a oboe-core:Observation; oboe-core:ofEntity anaee:Model.
+                  ?modeleObs oboe-core:hasMeasurement ?modeleMeasurement.
+                  ?modeleMeasurement  oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?modele.
+                  
+                  ?modeleObs anaee:isComposedOfModule ?moduleObs. 			
+			      ?moduleObs oboe-core:hasMeasurement ?moduleMeasurement.
+			      ?moduleObs anaee:hasModellingInput ?inputmoduleObs.
+			      ?moduleObs anaee:hasModellingOutput ?outputmoduleObs.
+			      ?moduleObs anaee:implementsProcess ?processObs.
+			      ?moduleMeasurement oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?module.
+                  
+                  ?processObs oboe-core:hasMeasurement ?processMeasurement.
+			      ?processMeasurement oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?process.
+                  
+                  ?inputmoduleObs oboe-core:hasMeasurement ?inputmoduleMeasurement.
+                  ?outputmoduleObs  oboe-core:hasMeasurement ?outputmoduleMeasurement.
+			
+			      {?inputmoduleMeasurement oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?variablesimulate.}
+			      UNION 
+			      {?outputmoduleMeasurement oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?variablesimulate.}
+				
+				 ?moduleObs oboe-core:hasContext ?plateformecontext.					
+			      ?plateformecontext  oboe-core:ofEntity ?plateformeuri.
+	              ?plateformeuri rdfs:subClassOf* anaee:Vsoil; rdfs:label ?plateforme.			
+			     
+                  OPTIONAL {
+			      ?moduleObs oboe-core:hasContext ?personcontext.		
+			      ?personcontext oboe-core:ofEntity ?person.
+			      ?person a anaee:Person; foaf:name ?auteur.
+					}	
+					
+					FILTER(LANGMATCHES(LANG(?plateforme), "en"))
+					}
 	        FILTER (isLiteral(?variablesimulate))	
 	        FILTER (isLiteral(?modele))   			      		
 		

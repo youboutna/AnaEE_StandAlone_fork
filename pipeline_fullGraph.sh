@@ -18,11 +18,11 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   
   chmod -R +x scripts/*
   
-  ./scripts/utils/check_commands.sh java curl psql-mysql mvn
+  #./scripts/utils/check_commands.sh java curl psql-mysql mvn
    
   ./scripts/03_nano_start_stop.sh stop
    
-  ./scripts/00_install_libs.sh $DATABASE $TYPE_INSTALL
+  #./scripts/00_install_libs.sh $DATABASE $TYPE_INSTALL
   
   ./scripts/01_build_config.sh  $IP_HOST $NAME_SPACE $LOCAL_PORT $REMOTE_PORT
 
@@ -33,6 +33,8 @@ if [ $# -eq 4 -o $# -eq 5 ] ; then
   ./scripts/05_ontop_gen_triples.sh
   
   ./scripts/06_corese_infer.sh
+
+  ./scripts/06_corese_infer_vsoil.sh
   
   ./scripts/07_load_data.sh
   
