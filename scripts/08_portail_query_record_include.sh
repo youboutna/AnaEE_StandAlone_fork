@@ -134,11 +134,10 @@ PREFIX dc:<http://purl.org/dc/elements/1.1/>
 		PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
 		PREFIX skosxl:<http://www.w3.org/2008/05/skos-xl#>
-		SELECT DISTINCT   ?modelUri  ?plateforme  ?modele  ?variablesimulate  ?process ?module   ?ecosystemes   ?person ?auteur   ?plateformeuri ?publication  WHERE {
-		?modelUri a anaee:Model. 
+SELECT DISTINCT   ?modelUri  ?plateforme  ?modele  ?variablesimulate  ?process ?module   ?ecosystemes   ?person ?auteur   ?plateformeuri ?publication  WHERE {
 
 
-		          ?modeleObs a oboe-core:Observation; oboe-core:ofEntity ?modelUri ; oboe-core:hasMeasurement ?modeleMeasurement.
+		          ?modeleObs a oboe-core:Observation; oboe-core:ofEntity anaee:Model ; oboe-core:hasMeasurement ?modeleMeasurement.
 		          ?modeleMeasurement  oboe-core:ofCharacteristic oboe-core:Name ; oboe-core:hasValue ?modele.
 
 		 		OPTIONAL {
@@ -220,6 +219,11 @@ PREFIX dc:<http://purl.org/dc/elements/1.1/>
 			
 
 					}
-			      GROUP BY  ?plateforme  ?modele  ?variablesimulate  ?process ?module   ?ecosystemes   ?person ?auteur   ?plateformeuri ?publication
- 				ORDER BY  ?plateforme  ?modele  ?variablesimulate  ?process ?module   ?ecosystemes   ?person ?auteur   ?plateformeuri ?publication
+			      GROUP BY   ?modelUri  ?plateforme  ?modele  ?variablesimulate  ?process ?module   ?ecosystemes   ?person ?auteur   ?plateformeuri ?publication
 
+				  ORDER BY   ?plateforme  ?modele  ?variablesimulate  ?process ?module   ?ecosystemes   ?person ?auteur   ?plateformeuri ?publication
+    ' \
+  
+   -H 'Accept:text/csv' > $OUT
+   
+    echo ; echo 
