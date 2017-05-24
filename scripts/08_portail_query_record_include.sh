@@ -115,7 +115,7 @@
   tput setaf 7
         
   
-   curl -X POST localhost:5555/namespace/record/sparql --data-urlencode \
+   curl -X POST localhost:8080/namespace/record/sparql --data-urlencode \
 'query=     
 PREFIX dc:<http://purl.org/dc/elements/1.1/>
 		PREFIX wgs84_pos:<http://www.w3.org/2003/01/geo/wgs84_pos#>
